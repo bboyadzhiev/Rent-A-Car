@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>d2c363b0-1304-4363-b74b-97d806b8cd8f</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Rent_A_Car</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="$(MSBuildThisFileDirectory)App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Sensors.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\GeopositionHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataModel\SampleDataSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\CarModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\RenterModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\UserModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\CarsPage.xaml.cs">
+      <DependentUpon>CarsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\CarsPageVM.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\CarTypePickerView.xaml.cs">
+      <DependentUpon>CarTypePickerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\CarTypesPage.xaml.cs">
+      <DependentUpon>CarTypesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\CarTypesPageVM.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Details\CarDetailsPage.xaml.cs">
+      <DependentUpon>CarDetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Details\CarDetailsPageVM.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\RentersPage.xaml.cs">
+      <DependentUpon>RentersPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\RentersPageVM.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\CarTypeVM.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\CarVM.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RenterVM.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Welcome.xaml.cs">
+      <DependentUpon>Welcome.xaml</DependentUpon>
+    </Compile>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\CarImages\CarTypes\convertible.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\CarImages\CarTypes\crossover.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\CarImages\CarTypes\hatchback.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\CarImages\CarTypes\limousine.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\CarImages\CarTypes\limousine2.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\CarImages\CarTypes\minivan.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\CarImages\CarTypes\retro.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\CarImages\CarTypes\sedane.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\CarImages\CarTypes\sports.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\CarImages\convertible.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\CarImages\crossover.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\CarImages\hatchback.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\CarImages\limousine.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\CarImages\sedane.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)DataModel\SampleData.json" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\LightGray.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\MediumGray.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\DarkGray.png" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\NavigationHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\RelayCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\SuspensionManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\ObservableDictionary.cs" />
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en-US\Resources.resw" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)Pages\CarsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Pages\CarTypePickerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Pages\CarTypesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Pages\Details\CarDetailsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Pages\RentersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Welcome.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Assets\Icons\" />
+  </ItemGroup>
+</Project>

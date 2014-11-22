@@ -1,0 +1,36 @@
+﻿<UserControl
+    x:Class="Rent_A_Car.Pages.CarTypePickerView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Rent_A_Car.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <GridView
+        Margin="0,9.5,0,0"
+        ItemsSource="{Binding}"
+        AutomationProperties.AutomationId="ItemGridView"
+        AutomationProperties.Name="Items In Group"
+        SelectionMode="Single"
+        SelectionChanged="OnCarTypeSelection"
+        >
+        <GridView.ItemTemplate>
+            <DataTemplate>
+                <Grid Margin="0,0,9.5,9.5">
+                    <Image Source="{Binding Url}" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}" Height="138.5" Width="138.5"/>
+                    <TextBlock Text="{Binding Title}" Foreground="Black" VerticalAlignment="Bottom" Margin="9.5,0,0,6.5" Style="{ThemeResource BaseTextBlockStyle}"/>
+                    <TextBlock Text="{Binding Count}"  Foreground="Black" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="9.5,5,5,6.5" Style="{ThemeResource BaseTextBlockStyle}"/>
+                   
+                </Grid>
+            </DataTemplate>
+        </GridView.ItemTemplate>
+        <GridView.ItemsPanel>
+            <ItemsPanelTemplate>
+                <ItemsWrapGrid />
+            </ItemsPanelTemplate>
+        </GridView.ItemsPanel>
+    </GridView>
+</UserControl>
