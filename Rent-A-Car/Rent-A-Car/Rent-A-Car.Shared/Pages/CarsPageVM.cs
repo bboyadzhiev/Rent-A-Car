@@ -66,15 +66,17 @@ namespace Rent_A_Car.Pages
 
         public CarsPageVM()
         {
+            this.PageTitle = string.Format("All cars");
             this.FetchCarsForRenterAndType(null, null);
         }
         public CarsPageVM(string renterId)
         {
+            this.PageTitle = string.Format("All renters' cars");
             this.FetchCarsForRenterAndType(renterId, null);
         }
         public CarsPageVM(string renterId, CarTypes carType)
         {
-           
+            this.PageTitle = string.Format("All renters' {0}s", carType.ToString().ToLower());
             this.FetchCarsForRenterAndType(renterId, carType);
         }
 

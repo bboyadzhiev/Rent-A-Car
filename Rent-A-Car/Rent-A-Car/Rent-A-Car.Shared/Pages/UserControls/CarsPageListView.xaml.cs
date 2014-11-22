@@ -15,21 +15,18 @@ using Windows.UI.Xaml.Navigation;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
-namespace Rent_A_Car.Pages
+namespace Rent_A_Car.Pages.UserControls
 {
-    public sealed partial class CarTypePickerView : UserControl
+    public sealed partial class CarsPageListView : UserControl
     {
-        public CarTypePickerView()
+        public CarsPageListView()
         {
             this.InitializeComponent();
         }
 
-        private void OnCarTypeSelection(object sender, SelectionChangedEventArgs e)
+        private void OnCarItemSelection(object sender, SelectionChangedEventArgs e)
         {
-            var typesGridView = (sender as GridView);
-            var selectedCarType = typesGridView.SelectedItem;
-            var frame = Window.Current.Content as Frame;
-            frame.Navigate(typeof(CarsPage), selectedCarType);
+
         }
     }
 }

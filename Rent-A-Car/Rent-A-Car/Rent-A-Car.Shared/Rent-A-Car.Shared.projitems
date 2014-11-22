@@ -25,9 +25,6 @@
       <DependentUpon>CarsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Pages\CarsPageVM.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Pages\CarTypePickerView.xaml.cs">
-      <DependentUpon>CarTypePickerView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Pages\CarTypesPage.xaml.cs">
       <DependentUpon>CarTypesPage.xaml</DependentUpon>
     </Compile>
@@ -40,6 +37,12 @@
       <DependentUpon>RentersPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Pages\RentersPageVM.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\UserControls\CarsPageListView.xaml.cs">
+      <DependentUpon>CarsPageListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\UserControls\CarTypePickerView.xaml.cs">
+      <DependentUpon>CarTypePickerView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\CarTypeVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\CarVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RenterVM.cs" />
@@ -75,10 +78,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Pages\CarTypePickerView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Pages\CarTypesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -88,6 +87,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Pages\RentersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Pages\UserControls\CarsPageListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Pages\UserControls\CarTypePickerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

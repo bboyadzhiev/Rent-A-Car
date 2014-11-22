@@ -9,6 +9,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    <!--
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.ThemeDictionaries>
@@ -21,6 +22,7 @@
             </ResourceDictionary.ThemeDictionaries>
         </ResourceDictionary>
     </Page.Resources>
+    -->
 
     <Grid x:Name="LayoutRoot">
 
@@ -38,13 +40,13 @@
         <!-- Title Panel -->
         <StackPanel Grid.Row="0" Margin="19,0,0,0">
             <TextBlock Text="{StaticResource AppName}" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
-            <TextBlock Text="Renters" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
+            <TextBlock Text="Renters" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" />
         </StackPanel>
 
         <!--TODO: Content should be placed within the following grid-->
         <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
             <ProgressRing x:Name="ring" Foreground="Red" Width="100" Height="100" IsActive="{Binding Initializing}"/>
-            <Hub x:Name="RentersHub" Header="Renters"  Background="{ThemeResource HubBackgroundImageBrush}">
+            <Hub x:Name="RentersHub" Header="Renters" >
           
                 <HubSection >
                     <DataTemplate>
