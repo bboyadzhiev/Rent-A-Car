@@ -1,13 +1,80 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-//using Windows.Services.Maps;
+using Parse;
 using Windows.Devices.Geolocation;
 
 namespace Rent_A_Car.Common
 {
     public class GeopositionHelper
     {
+      
+        static public double DistanceTo(ParseGeoPoint point1, ParseGeoPoint point2, char unit = 'K')//double lat1, double lon1, double lat2, double lon2, char unit = 'K')
+        {
+            double rlat1 = Math.PI * point1.Latitude / 180;
+            double rlat2 = Math.PI * point2.Latitude / 180;
+            double rlon1 = Math.PI * point1.Longitude / 180;
+            double rlon2 = Math.PI * point2.Longitude / 180;
+            double theta = point1.Longitude -point2.Longitude;
+            double rtheta = Math.PI * theta / 180;
+            double dist =
+                Math.Sin(rlat1) * Math.Sin(rlat2) + Math.Cos(rlat1) *
+                Math.Cos(rlat2) * Math.Cos(rtheta);
+            dist = Math.Acos(dist);
+            dist = dist * 180 / Math.PI;
+            dist = dist * 60 * 1.1515;
+
+            switch (unit)
+            {
+                case 'K': //Kilometers -> default
+                    return dist * 1.609344;
+                case 'N': //Nautical Miles 
+                    return dist * 0.8684;
+                case 'M': //Miles
+                    return dist;
+            }
+
+            return dist;
+        }
+
+        public static double RadToDeg(double radians)
+        {
+            return radians * (180 / Math.PI);
+        }
+
+        public static double DegToRad(double degrees)
+        {
+            return degrees * (Math.PI / 180);
+        }
+
+        public static double Bearing(double lat1, double long1, double lat2, double long2)
+        {
+            //Convert input values to radians  
+            lat1 = GeopositionHelper.DegToRad(lat1);
+            long1 = GeopositionHelper.DegToRad(long1);
+            lat2 = GeopositionHelper.DegToRad(lat2);
+            long2 = GeopositionHelper.DegToRad(long2);
+
+            double deltaLong = long2 - long1;
+
+            double y = Math.Sin(deltaLong) * Math.Cos(lat2);
+            double x = Math.Cos(lat1) * Math.Sin(lat2) -
+                    Math.Sin(lat1) * Math.Cos(lat2) * Math.Cos(deltaLong);
+            double bearing = Math.Atan2(y, x);
+            return GeopositionHelper.ConvertToBearing(GeopositionHelper.RadToDeg(bearing));
+        }
+
+        public static double ConvertToBearing(double deg)
+        {
+            return (deg + 360) % 360;
+        }
+
+        public static double GetBearing(ParseGeoPoint origin, ParseGeoPoint target)
+        {
+            return Bearing(origin.Latitude, origin.Longitude, target.Latitude, target.Longitude);
+        }
+
+        #region Deprecated methods
         //public GeopositionHelper()
         //{
         //    // Nearby location to use as a query hint.
@@ -85,37 +152,6 @@ namespace Rent_A_Car.Common
         //    }
         //}
 
-        public static double RadToDeg(double radians)
-        {
-            return radians * (180 / Math.PI);
-        }
-
-        public static double DegToRad(double degrees)
-        {
-            return degrees * (Math.PI / 180);
-        }
-
-        public static double Bearing(double lat1, double long1, double lat2, double long2)
-        {
-            //Convert input values to radians  
-            lat1 = GeopositionHelper.DegToRad(lat1);
-            long1 = GeopositionHelper.DegToRad(long1);
-            lat2 = GeopositionHelper.DegToRad(lat2);
-            long2 = GeopositionHelper.DegToRad(long2);
-
-            double deltaLong = long2 - long1;
-
-            double y = Math.Sin(deltaLong) * Math.Cos(lat2);
-            double x = Math.Cos(lat1) * Math.Sin(lat2) -
-                    Math.Sin(lat1) * Math.Cos(lat2) * Math.Cos(deltaLong);
-            double bearing = Math.Atan2(y, x);
-            return GeopositionHelper.ConvertToBearing(GeopositionHelper.RadToDeg(bearing));
-        }
-
-        public static double ConvertToBearing(double deg)
-        {
-            return (deg + 360) % 360;
-        }  
-
+        #endregion
     }
 }

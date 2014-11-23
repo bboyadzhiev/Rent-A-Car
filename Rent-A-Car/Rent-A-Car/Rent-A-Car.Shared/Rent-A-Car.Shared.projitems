@@ -22,6 +22,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\CarModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\RenterModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\UserModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\CarPositionPage.xaml.cs">
+      <DependentUpon>CarPositionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\CarPositionPageVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\CarsPage.xaml.cs">
       <DependentUpon>CarsPage.xaml</DependentUpon>
     </Compile>
@@ -96,6 +100,10 @@
     <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en-US\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)Pages\CarPositionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Pages\CarsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

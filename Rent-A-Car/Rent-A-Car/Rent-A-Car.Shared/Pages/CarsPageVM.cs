@@ -8,6 +8,8 @@ using GalaSoft.MvvmLight;
 using Parse;
 using Rent_A_Car.Models;
 using Rent_A_Car.ViewModels;
+using Rent_A_Car.Common;
+using System.Threading;
 
 namespace Rent_A_Car.Pages
 {
@@ -76,8 +78,25 @@ namespace Rent_A_Car.Pages
         }
         public CarsPageVM(string renterId, CarTypes carType)
         {
+            this.Initializing = true;
             this.PageTitle = string.Format("All renters' {0}s", carType.ToString().ToLower());
+            //this.Cars =  CarManager.FetchCarsForRenterAndType(renterId, carType);
             this.FetchCarsForRenterAndType(renterId, carType);
+            this.Initializing = false;
+        }
+        private async Task FetchCarsForRenterAndType3(string renterId, CarTypes carType)
+        {
+            // IEnumerable<CarModel> filtered;
+
+           // var query = await new ParseQuery<CarModel>().Where(c => c.Available && c.CarType == carType && c.Renter.ObjectId == renterId).FirstOrDefaultAsync(CancellationToken.None);
+           // var car = await new ParseQuery<CarModel>().Where(c => c.Renter.ObjectId == renterId).FirstOrDefaultAsync(CancellationToken.None);
+            var s = carType;
+            var car = await new ParseQuery<CarModel>().Where(c => (int)c.CarType == 3).FirstOrDefaultAsync(CancellationToken.None);
+            
+            var b = 5;
+
+
+
         }
 
         private async Task FetchCarsForRenterAndType(string renterId, CarTypes? carType)
@@ -112,7 +131,7 @@ namespace Rent_A_Car.Pages
 
         private async Task FetchCarsForRenterAndType2(string renterId, CarTypes carType)
         {
-            this.Initializing = true; 
+            this.Initializing = true;
             var query = new ParseQuery<CarModel>().Where(c => (c.Renter.ObjectId == renterId) && (c.CarType == carType));
             //  var query = new ParseQuery<CarModel>().Where(c => c.Renter.ObjectId == "ZNlAgnwMS9");
 

@@ -46,24 +46,28 @@ namespace Rent_A_Car
 
         private event EventHandler CarResult;
 
-        public  Welcome()
+        public Welcome()
         {
             this.InitializeComponent();
             this.ring.IsActive = true;
             var user = ParseUser.CurrentUser;
             this.userName.Text = user.Username;
 
-            this.CarResult += this.MainRouter;
-            HasCar();
+            this.CarResult += this.CarFindingDone;
+            // task = HasCar();
+             CarManager.HasCarAssigned(this.CarResult);
+            //HasCar();
             Sensors.LocationChanged += this.UpdateLocationText;
         }
 
-        private void MainRouter(object sender, EventArgs e)
+        private void CarFindingDone(object sender, EventArgs e)
         {
+            this.ring.IsActive = false;
             if (sender != null)
             {
-                 //has car assigned!
+                //has car assigned!
                 this.userCar.Text = (sender as CarModel).ObjectId;
+                this.Frame.Navigate(typeof(CarPositionPage));
             }
             else
             {
@@ -75,17 +79,32 @@ namespace Rent_A_Car
 
         public async Task HasCar()
         {
-            var user = ParseUser.CurrentUser;
-            var query = await new ParseQuery<ParseObject>("_User").Where(u => u.ObjectId == user.ObjectId).FirstOrDefaultAsync();
-            var car = query.Get<CarModel>("Car");
-            
-            
             EventHandler handler = this.CarResult;
+            var user = ParseUser.CurrentUser;
+            var query = new ParseQuery<ParseObject>("_User").Where(u => u.ObjectId == user.ObjectId).FirstOrDefaultAsync();
+            if (query.IsCanceled || query.IsFaulted)
+            {
+                if (handler != null)
+                {
+                    handler(null, EventArgs.Empty);
+                }
+            }
+            var res = await query;
+            if (res == null)
+            {
+                if (handler != null)
+                {
+                    handler(null, EventArgs.Empty);
+                }
+            }
+            CarModel car = null;
+            res.TryGetValue<CarModel>("Car", out car);           
+
             if (handler != null)
             {
                 handler(car, EventArgs.Empty);
             }
-          
+
         }
 
 

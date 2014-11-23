@@ -23,23 +23,30 @@ namespace Rent_A_Car.Common
             accel.ReportInterval = 200;
             Acceleration();
 
-#endif                  
+#endif
             locator.DesiredAccuracy = PositionAccuracy.High;
             locator.ReportInterval = 1000; // ms
-            locator.MovementThreshold = 100; //meters
+            locator.MovementThreshold = 5; //meters
             Geolocation();
         }
 
 
 #if WINDOWS_PHONE_APP
+        public static Inclinometer inclinometer = Inclinometer.GetDefault();
+        public static event EventHandler InclinationChenged;
+        public static InclinometerReading inclinationReadings;
+
+
         static Accelerometer accel = Accelerometer.GetDefault();
         public static event EventHandler AccelerometerChanged;
+        
         public static double accelX;
         public static double accelY;
         public static double accelZ;
 
         private static void Acceleration()
         {
+            
             accel.ReadingChanged += (snd, args) =>
             {
                 Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
@@ -55,7 +62,26 @@ namespace Rent_A_Car.Common
                 });
             };
         }
+
+        private static void Inclination()
+        {
+            inclinometer.ReadingChanged += (snd, args) =>
+            {
+                Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                {
+                    inclinationReadings = args.Reading;
+                 
+                    EventHandler handler = InclinationChenged;
+                    if (handler != null)
+                    {
+                        handler(null, EventArgs.Empty);
+                    }
+                });
+            };
+        }
 #else
+        public static event EventHandler InclinationChenged  = null;
+         public static InclinometerReading inclinationReadings = null;
         public static event EventHandler AccelerometerChanged = null;
         public static double accelX = 0;
         public static double accelY = 0;
@@ -69,8 +95,8 @@ namespace Rent_A_Car.Common
                Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                {
                    var coords = args.Position.Coordinate;
-                   longitude = coords.Longitude;
-                   lattitude = coords.Longitude;
+                   lattitude = args.Position.Coordinate.Point.Position.Latitude;//coords.Latitude;
+                   longitude = args.Position.Coordinate.Point.Position.Longitude;//coords.Longitude;
                    heading = coords.Heading;
                    EventHandler handler = LocationChanged;
                    if (handler != null)

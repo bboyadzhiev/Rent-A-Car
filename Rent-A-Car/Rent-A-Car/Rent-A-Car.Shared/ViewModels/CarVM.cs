@@ -19,7 +19,7 @@ namespace Rent_A_Car.ViewModels
 {
     public class CarVM : ViewModelBase
     {
-        
+
         private CarTypes carType;
         private string plate;
         private string renterId;
@@ -37,7 +37,7 @@ namespace Rent_A_Car.ViewModels
             get { return id; }
             set { id = value; }
         }
-        
+
 
         public string Title
         {
@@ -48,7 +48,7 @@ namespace Rent_A_Car.ViewModels
                 this.RaisePropertyChanged(() => this.Title);
             }
         }
-        
+
 
         public string RenterId
         {
@@ -166,6 +166,23 @@ namespace Rent_A_Car.ViewModels
                     HasAirconditioner = model.HasAirconditioner
                 };
             }
+        }
+
+        public static CarVM FromCarModel(CarModel model)
+        {
+            CarVM car = new CarVM();
+            car.Id = model.ObjectId;
+            car.RenterId = model.Renter.ObjectId;
+            car.CarType = model.CarType;
+            car.Plate = model.Plate;
+            car.Title = model.Title;
+            car.Description = model.Description;
+            car.Location = model.Location;
+            car.Image = CarVM.GetImageFromParseUri(model.Image.Url);
+            car.Seats = model.Seats;
+            car.Luggage = model.Luggage;
+            car.HasAirconditioner = model.HasAirconditioner;
+            return car;
         }
 
         public static BitmapImage GetImageFromParseUri(Uri uri)

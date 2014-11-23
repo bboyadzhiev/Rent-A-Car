@@ -1,0 +1,162 @@
+﻿<Page
+    x:Class="Rent_A_Car.Pages.CarPositionPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Rent_A_Car.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid x:Name="LayoutRoot">
+
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title Panel -->
+        <StackPanel Grid.Row="0" Margin="19,0,0,0">
+            <TextBlock Text="{StaticResource AppName}" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
+            <TextBlock Text="Where's the car?" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}"/>
+        </StackPanel>
+
+        <!--TODO: Content should be placed within the following grid-->
+        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
+            <Grid x:Name="Content">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                
+                
+                <StackPanel Grid.Row="0" Grid.ColumnSpan="4" HorizontalAlignment="Center">
+                    <TextBlock Text="Distance to car:" FontSize="27"/>
+                    <TextBlock Text="{Binding DistanceText}"  FontSize="27"/>
+                    <TextBlock Text="{Binding Bearing}"  FontSize="20"/>
+              
+
+
+                    <!-- Rotates the Polyline 45 degrees about the point (25,50).
+                <Canvas Height="200" 
+                        Width="200" 
+                        Grid.ColumnSpan="4" 
+                        HorizontalAlignment="Center"
+                        >
+                    
+                       
+                    <Polyline Points=" 25,75 50,90 25,25 0,90 25,75  " 
+                                Stroke="Gray" StrokeThickness="5" Fill="Gray"
+                              ManipulationMode="All"
+                                Canvas.Left="75" Canvas.Top="50">
+                        <Polyline.RenderTransform>
+                            <RotateTransform CenterX="25" CenterY="50" Angle="{Binding NorthPoleBearing}" />
+                        </Polyline.RenderTransform>
+                    </Polyline>
+                    <Polyline Points="25,75 50,90 25,25 0,90 25,75 " 
+                                Stroke="Green" StrokeThickness="5" Fill="Red"
+                                Canvas.Left="75" Canvas.Top="50">
+                        <Polyline.RenderTransform>
+                            <RotateTransform CenterX="25" CenterY="50" Angle="{Binding Bearing}" />
+                        </Polyline.RenderTransform>
+                    </Polyline>
+                </Canvas>
+                        <Polyline.RenderTransform>
+                            <RotateTransform CenterX="25" CenterY="50" Angle="{Binding NorthPoleBearing}" />
+                        </Polyline.RenderTransform>
+                    -->
+                <Canvas Height="200" 
+                        Width="200" 
+                        Grid.ColumnSpan="4" 
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        >
+                    <Polyline Points=" 25,75 50,90 25,25 0,90 25,75  " 
+                                Stroke="Gray" StrokeThickness="5" 
+                              ManipulationMode="All"
+                                Canvas.Left="75" Canvas.Top="50">
+                        <Polyline.RenderTransform>
+                            <TransformGroup>
+                                <RotateTransform CenterX="25" CenterY="50" Angle="{Binding NorthPoleBearing}" />
+                                <ScaleTransform ScaleY="{Binding Pitch}" ScaleX="1"  CenterX="25" CenterY="50" />
+                            </TransformGroup>
+                        </Polyline.RenderTransform>
+                    </Polyline>
+                    <Polyline 
+                        Points="25,75 50,90 25,25 0,90 25,75 " 
+                                Stroke="Green" StrokeThickness="5" Fill="Red"
+                                Canvas.Left="75" Canvas.Top="50">
+                        <Polyline.RenderTransform>
+                            <TransformGroup>
+                                <RotateTransform CenterX="25" CenterY="50" Angle="{Binding Bearing}" />
+                                <ScaleTransform ScaleY="{Binding Pitch}" ScaleX="1"  CenterX="25" CenterY="50" />
+                            </TransformGroup>
+                        </Polyline.RenderTransform>
+                    </Polyline>
+                </Canvas>
+                </StackPanel>
+                <StackPanel Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right">
+                    <TextBlock Text="User"/>
+                    <TextBlock Text="Lat"/>
+                    <TextBlock Text="Lon"/>
+                </StackPanel>
+                <StackPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left">
+                    <TextBlock Text=" Location"/>
+                    <TextBlock Text="{Binding UserLocation.Latitude}"/>
+                    <TextBlock Text="{Binding UserLocation.Longitude}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right">
+                    <TextBlock Text="Car "/>
+                    <TextBlock Text="Lat"/>
+                    <TextBlock Text="Lon"/>
+                </StackPanel>
+                <StackPanel Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left">
+                    <TextBlock Text=" Location"/>
+                    <TextBlock Text="{Binding Car.Location.Latitude}"/>
+                    <TextBlock Text="{Binding Car.Location.Longitude}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right">
+                    <TextBlock Text="PITCH"/>
+                    <TextBlock Text="ROLL"/>
+                    <TextBlock Text="YAW"/>
+                </StackPanel>
+                <StackPanel Grid.Row="2" Grid.Column="3" HorizontalAlignment="Left">
+                    <TextBlock Text="{Binding Pitch}"/>
+                    <TextBlock Text="{Binding Inclination.RollDegrees}"/>
+                    <TextBlock Text="{Binding Inclination.YawDegrees}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="3" Grid.Column="2" HorizontalAlignment="Right">
+                    <TextBlock Text="Accelerator X"/>
+                    <TextBlock Text="Accelerator Y"/>
+                    <TextBlock Text="Accelerator Z"/>
+                </StackPanel>
+                <StackPanel Grid.Row="3" Grid.Column="3" HorizontalAlignment="Left">
+                    <TextBlock Text="{Binding AccelX}"/>
+                    <TextBlock Text="{Binding AccelY}"/>
+                    <TextBlock Text="{Binding AccelZ}"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="2" 
+                    HorizontalAlignment="Center">
+            <AppBarButton Label="Renters" Icon="World" Click="OnRentersAppBarButtonClick" />
+            <AppBarButton Label="Profile"  Icon="Contact" Click="OnDetailsAppBarButtonClick"/>
+        </StackPanel>
+    </Grid>
+</Page>

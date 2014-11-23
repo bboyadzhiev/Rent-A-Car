@@ -15,42 +15,34 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Rent_A_Car.ViewModels;
-using Parse;
-using Rent_A_Car.Models;
-using System.Threading;
-using Windows.UI.Notifications;
-using Windows.Data.Xml.Dom;
-using Windows.UI.Popups;
-using Windows.Storage;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
-namespace Rent_A_Car.Pages.Details
+namespace Rent_A_Car.Pages
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class CarDetailsPage : Page
+    public sealed partial class CarPositionPage : Page
     {
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
-        private string carId;
 
-        public CarDetailsPage()
-            :this(new CarVM())
+        public CarPositionPage()
+            :this(new CarPositionPageVM())
         {
 
         }
-        public CarDetailsPage(CarVM carView)
+
+        public CarPositionPage(CarPositionPageVM viewModel)
         {
             this.InitializeComponent();
 
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
-            this.ViewModel = carView;
-            this.carId = carView.Id;
+
+            this.ViewModel = viewModel;
         }
 
         /// <summary>
@@ -114,22 +106,12 @@ namespace Rent_A_Car.Pages.Details
         /// handlers that cannot cancel the navigation request.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            var carView = e.Parameter as CarVM;
-            this.carId = carView.Id;
-            this.ViewModel = carView;
+       
             this.navigationHelper.OnNavigatedTo(e);
         }
-        public CarVM ViewModel
-        {
-            get
-            {
-                return (CarVM)this.DataContext;
-            }
-            set
-            {
-                this.DataContext = value;
-            }
-        }
+
+     
+        
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
@@ -138,18 +120,15 @@ namespace Rent_A_Car.Pages.Details
 
         #endregion
 
-        private async void OnRentCarClick(object sender, RoutedEventArgs e)
+        public CarPositionPageVM ViewModel
         {
-            var carToRent = this.ViewModel;
-            var rented = await CarManager.RentCar(carToRent);
-            if (rented)
+            get
             {
-                this.Frame.Navigate(typeof(CarPositionPage));
-               // this.Frame.Navigate(typeof(CarPositionPage), carToRent);
+                return (CarPositionPageVM)this.DataContext;
             }
-            else
+            set
             {
-                this.Frame.GoBack();
+                this.DataContext = value;
             }
         }
 
