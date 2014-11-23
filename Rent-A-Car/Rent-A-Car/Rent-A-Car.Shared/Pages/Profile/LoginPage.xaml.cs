@@ -1,5 +1,4 @@
-﻿using Rent_A_Car.Common;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -15,26 +14,31 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Windows.ApplicationModel.Resources;
+using Parse;
+using Rent_A_Car.Common;
+using Rent_A_Car.ViewModels;
+using Windows.UI.Popups;
+using Rent_A_Car.Models;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
-namespace Rent_A_Car.Pages
+namespace Rent_A_Car.Pages.Profile     
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class RentersPage : Page
+    public sealed partial class LoginPage : Page
     {
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
-        private readonly ResourceLoader resourceLoader = ResourceLoader.GetForCurrentView("Resources");
-        public RentersPage()
-            : this(new RentersPageVM())
+
+        public LoginPage()
+            : this(new LoginPageVM())
         {
 
         }
-        public RentersPage(RentersPageVM rentersPVM)
+
+        public LoginPage(LoginPageVM viewModel)
         {
             this.InitializeComponent();
 
@@ -42,7 +46,7 @@ namespace Rent_A_Car.Pages
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
 
-            this.ViewModel = rentersPVM;
+            this.ViewModel = viewModel;
         }
 
         /// <summary>
@@ -106,6 +110,7 @@ namespace Rent_A_Car.Pages
         /// handlers that cannot cancel the navigation request.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            //this.DataContext = e.Parameter;
             this.navigationHelper.OnNavigatedTo(e);
         }
 
@@ -116,31 +121,38 @@ namespace Rent_A_Car.Pages
 
         #endregion
 
-        private void OnRentersListViewSelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void OnLoginButtonClick(object sender, RoutedEventArgs e)
         {
-            var rentersListView = (sender as ListView);
-            var selectedRenter = rentersListView.SelectedItem;
-            this.Frame.Navigate(typeof(CarTypesPage), selectedRenter);
-          //  this.Frame.Navigate(typeof(CarTypesPage));   
-            
+            if (this.ViewModel == null)
+            {
+                //raise error
+                return;
+            }
+            //MessageDialog dia = new MessageDialog("Username " , "Done!");
+            //await dia.ShowAsync();
+            //var user = new ParseUser();
+            //user.Username = "Gosho";
+            //user.Password = "gogo";
+            //user["Car"] = new CarModel() { Plate = "XXXXXXXXXXXXX" };
+            //await user.SignUpAsync();
+
+            var isLoggedIn = await this.ViewModel.Login();
+            if (isLoggedIn)
+            {
+                this.Frame.Navigate(typeof(RentersPage));
+            }
         }
 
-        public RentersPageVM ViewModel
+        public LoginPageVM ViewModel
         {
             get
             {
-                return (RentersPageVM) this.DataContext;
+                return this.DataContext as LoginPageVM;
             }
             set
             {
                 this.DataContext = value;
             }
         }
-
-        private void OnDetailsAppBarButtonClick(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(ProfilePage));
-        }
-        
     }
 }

@@ -129,5 +129,15 @@ namespace Rent_A_Car.Pages
                 this.DataContext = value;
             }
         }
+
+        private void OnDetailsAppBarButtonClick(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(ProfilePage));
+        }
+
+        private void OnRentersAppBarButtonClick(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(RentersPage));
+        }
     }
 }

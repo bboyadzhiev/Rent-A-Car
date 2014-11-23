@@ -35,6 +35,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <!-- Title Panel -->
@@ -46,18 +47,16 @@
         <!--TODO: Content should be placed within the following grid-->
         <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
             <ProgressRing x:Name="ring" Foreground="Red" Width="100" Height="100" IsActive="{Binding Initializing}"/>
-            <Hub x:Name="RentersHub" Header="Renters" >
-          
-                <HubSection >
-                    <DataTemplate>
-                        <ListView ItemsSource="{Binding Renters}"
-                                  ItemTemplate="{StaticResource RentersTemplate}"
-                                  SelectionMode="Single"
-                                  SelectionChanged="OnRentersListViewSelectionChanged"
+            <ListView ItemsSource="{Binding Renters}"
+                      ItemTemplate="{StaticResource RentersTemplate}"
+                      SelectionMode="Single"
+                      SelectionChanged="OnRentersListViewSelectionChanged"
                                   />
-                    </DataTemplate>
-                </HubSection>
-            </Hub>
         </Grid>
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="2"
+                    HorizontalAlignment="Center">
+            <AppBarButton Label="Profile"  Icon="Contact" Click="OnDetailsAppBarButtonClick"/>
+        </StackPanel>
     </Grid>
 </Page>

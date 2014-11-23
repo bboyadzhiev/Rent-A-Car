@@ -14,14 +14,21 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+        <ProgressRing x:Name="ring" Foreground="Red" Width="100" Height="100" Grid.ColumnSpan="2" Grid.RowSpan="5"/>
         <Button Content="Button" HorizontalAlignment="Left" Margin="33,58,0,0" VerticalAlignment="Top" Click="Button_Click" Grid.Row="0"/>
         <TextBlock Name="latTextBlock" FontSize="34" Grid.Row="1"/>
         <TextBlock Name="lonTextBlock" FontSize="34" Grid.Row="2"/>
         <TextBlock Name="fromTextBlock" Grid.Row="3"/>
+        <StackPanel Grid.Row="4">
+            
+            <TextBlock Name="userName" />
+        <TextBlock Name="userCar" />
+        </StackPanel>
     </Grid>
 </Page>

@@ -15,13 +15,15 @@ namespace Rent_A_Car.Common
         public static double lattitude;
         public static double longitude;
         public static double? heading;
+        public static bool enabled { get; set; }
 
         static Sensors()
         {
 #if WINDOWS_PHONE_APP
-            Accelerometer.ReportInterval = 200;
+            accel.ReportInterval = 200;
             Acceleration();
-#endif
+
+#endif                  
             locator.DesiredAccuracy = PositionAccuracy.High;
             locator.ReportInterval = 1000; // ms
             locator.MovementThreshold = 100; //meters
@@ -30,7 +32,7 @@ namespace Rent_A_Car.Common
 
 
 #if WINDOWS_PHONE_APP
-        static Accelerometer Accelerometer = Accelerometer.GetDefault();
+        static Accelerometer accel = Accelerometer.GetDefault();
         public static event EventHandler AccelerometerChanged;
         public static double accelX;
         public static double accelY;
@@ -38,7 +40,7 @@ namespace Rent_A_Car.Common
 
         private static void Acceleration()
         {
-            Accelerometer.ReadingChanged += (snd, args) =>
+            accel.ReadingChanged += (snd, args) =>
             {
                 Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {

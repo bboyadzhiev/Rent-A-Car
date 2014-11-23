@@ -19,12 +19,13 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <!-- Title Panel -->
         <StackPanel Grid.Row="0" Margin="19,0,0,0">
             <TextBlock Text="{StaticResource AppName}" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
-            <TextBlock Text="{Binding PageTitle}" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
+            <TextBlock Text="{Binding PageTitle}" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}"/>
         </StackPanel>
 
         <!--TODO: Content should be placed within the following grid-->
@@ -33,6 +34,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
@@ -59,10 +61,16 @@
                 <Grid Grid.Row="1" Grid.Column="0">
                     
                 </Grid>
-                <Grid Grid.Row="2" Grid.ColumnSpan="2">
-
+                <Grid Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+                    <Button Content="Rent this car!" Click="OnRentCarClick"/>
                 </Grid>
             </Grid>
         </Grid>
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="2"
+                    HorizontalAlignment="Center">
+            <AppBarButton Label="Renters" Icon="World" Click="OnRentersAppBarButtonClick" />
+            <AppBarButton Label="Profile"  Icon="Contact" Click="OnDetailsAppBarButtonClick"/>
+        </StackPanel>
     </Grid>
 </Page>

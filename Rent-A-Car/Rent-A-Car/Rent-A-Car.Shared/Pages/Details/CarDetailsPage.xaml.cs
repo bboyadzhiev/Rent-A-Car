@@ -16,6 +16,13 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Rent_A_Car.ViewModels;
+using Parse;
+using Rent_A_Car.Models;
+using System.Threading;
+using Windows.UI.Notifications;
+using Windows.Data.Xml.Dom;
+using Windows.UI.Popups;
+using Windows.Storage;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -28,6 +35,7 @@ namespace Rent_A_Car.Pages.Details
     {
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
+        private string carId;
 
         public CarDetailsPage()
             :this(new CarVM())
@@ -41,7 +49,8 @@ namespace Rent_A_Car.Pages.Details
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
-            this.DataContext = carView;
+            this.ViewModel = carView;
+            this.carId = carView.Id;
         }
 
         /// <summary>
@@ -105,7 +114,21 @@ namespace Rent_A_Car.Pages.Details
         /// handlers that cannot cancel the navigation request.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            var carView = e.Parameter as CarVM;
+            this.carId = carView.Id;
+            this.ViewModel = carView;
             this.navigationHelper.OnNavigatedTo(e);
+        }
+        public CarVM ViewModel
+        {
+            get
+            {
+                return (CarVM)this.DataContext;
+            }
+            set
+            {
+                this.DataContext = value;
+            }
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -114,5 +137,22 @@ namespace Rent_A_Car.Pages.Details
         }
 
         #endregion
+
+        private void OnRentCarClick(object sender, RoutedEventArgs e)
+        {
+            CarManager.RentCar(this.carId);
+
+            this.Frame.Navigate(typeof(Welcome));
+        }
+
+        private void OnRentersAppBarButtonClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void OnDetailsAppBarButtonClick(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

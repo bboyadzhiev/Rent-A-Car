@@ -15,7 +15,6 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Windows.ApplicationModel.Resources;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -24,25 +23,18 @@ namespace Rent_A_Car.Pages
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class RentersPage : Page
+    public sealed partial class ProfilePage : Page
     {
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
-        private readonly ResourceLoader resourceLoader = ResourceLoader.GetForCurrentView("Resources");
-        public RentersPage()
-            : this(new RentersPageVM())
-        {
 
-        }
-        public RentersPage(RentersPageVM rentersPVM)
+        public ProfilePage()
         {
             this.InitializeComponent();
 
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
-
-            this.ViewModel = rentersPVM;
         }
 
         /// <summary>
@@ -116,31 +108,9 @@ namespace Rent_A_Car.Pages
 
         #endregion
 
-        private void OnRentersListViewSelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void OnRentersAppBarButtonClick(object sender, RoutedEventArgs e)
         {
-            var rentersListView = (sender as ListView);
-            var selectedRenter = rentersListView.SelectedItem;
-            this.Frame.Navigate(typeof(CarTypesPage), selectedRenter);
-          //  this.Frame.Navigate(typeof(CarTypesPage));   
-            
+            this.Frame.Navigate(typeof(RentersPage));
         }
-
-        public RentersPageVM ViewModel
-        {
-            get
-            {
-                return (RentersPageVM) this.DataContext;
-            }
-            set
-            {
-                this.DataContext = value;
-            }
-        }
-
-        private void OnDetailsAppBarButtonClick(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(ProfilePage));
-        }
-        
     }
 }

@@ -20,6 +20,7 @@ using Parse;
 using Rent_A_Car.Models;
 using System.Threading.Tasks;
 using Windows.Storage;
+using Rent_A_Car.Pages.Profile;
 
 // The Universal Hub Application project template is documented at http://go.microsoft.com/fwlink/?LinkID=391955
 
@@ -254,7 +255,19 @@ namespace Rent_A_Car
                 // configuring the new page by passing required information as a navigation
                 // parameter
                 // if (!rootFrame.Navigate(typeof(HubPage), e.Arguments))
-                if (!rootFrame.Navigate(typeof(Welcome), e.Arguments))
+
+                Type pageType;
+               
+                if (ParseUser.CurrentUser != null)
+                {
+                    
+                    pageType = typeof(Welcome);
+                }
+                else
+                {
+                    pageType = typeof(LoginPage);
+                }
+                if (!rootFrame.Navigate(pageType, e.Arguments))
                 {
                     throw new Exception("Failed to create initial page");
                 }

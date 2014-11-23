@@ -19,6 +19,7 @@ namespace Rent_A_Car.ViewModels
 {
     public class CarVM : ViewModelBase
     {
+        
         private CarTypes carType;
         private string plate;
         private string renterId;
@@ -29,6 +30,14 @@ namespace Rent_A_Car.ViewModels
         private int luggage;
         private bool hasAirConditioner;
         private string title;
+        private string id;
+
+        public string Id
+        {
+            get { return id; }
+            set { id = value; }
+        }
+        
 
         public string Title
         {
@@ -144,6 +153,7 @@ namespace Rent_A_Car.ViewModels
             {
                 return (model) => new CarVM()
                 {
+                    Id = model.ObjectId,
                     RenterId = model.Renter.ObjectId,
                     CarType = model.CarType,
                     Plate = model.Plate,

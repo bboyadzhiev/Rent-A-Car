@@ -5,7 +5,7 @@ using Parse;
 
 namespace Rent_A_Car.Models
 {
-      [ParseClassName("RenterModel")]
+      [ParseClassName("UserModel")]
     public class UserModel   : ParseObject
     {
           [ParseFieldName("avatar")]

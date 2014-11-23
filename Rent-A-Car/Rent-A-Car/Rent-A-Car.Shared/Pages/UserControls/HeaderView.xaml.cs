@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
-using Rent_A_Car.Pages.Details;
+using GalaSoft.MvvmLight;
+using Rent_A_Car.ViewModels;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -18,19 +19,24 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Rent_A_Car.Pages.UserControls
 {
-    public sealed partial class CarsPageListView : UserControl
+    public sealed partial class HeaderView : UserControl
     {
-        public CarsPageListView()
+
+        public HeaderView()
+            :this (new HeaderVM())
         {
-            this.InitializeComponent();
+
         }
 
-        private void OnCarItemSelection(object sender, SelectionChangedEventArgs e)
+        public HeaderView(HeaderVM viewModel)
         {
-            var carsListView = (sender as ListView);
-            var selectedCar = carsListView.SelectedItem;
-            var frame = Window.Current.Content as Frame;
-            frame.Navigate(typeof(CarDetailsPage), selectedCar);
+            this.InitializeComponent();
+            this.DataContext = viewModel;
+        }
+
+        private void OnSignOutButtonClick(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
-using Rent_A_Car.Pages.Details;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -18,19 +17,11 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Rent_A_Car.Pages.UserControls
 {
-    public sealed partial class CarsPageListView : UserControl
+    public sealed partial class FooterView : UserControl
     {
-        public CarsPageListView()
+        public FooterView()
         {
             this.InitializeComponent();
-        }
-
-        private void OnCarItemSelection(object sender, SelectionChangedEventArgs e)
-        {
-            var carsListView = (sender as ListView);
-            var selectedCar = carsListView.SelectedItem;
-            var frame = Window.Current.Content as Frame;
-            frame.Navigate(typeof(CarDetailsPage), selectedCar);
         }
     }
 }

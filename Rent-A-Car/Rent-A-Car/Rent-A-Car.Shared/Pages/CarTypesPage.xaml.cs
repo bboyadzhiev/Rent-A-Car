@@ -138,5 +138,15 @@ namespace Rent_A_Car.Pages
             //var selectedCarType = typesGridView.SelectedItem;
             //this.Frame.Navigate(typeof(CarsPage), selectedCarType);
         }
+
+        private void OnDetailsAppBarButtonClick(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(ProfilePage));
+        }
+
+        private void OnRentersAppBarButtonClick(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(RentersPage));
+        }
     }
 }

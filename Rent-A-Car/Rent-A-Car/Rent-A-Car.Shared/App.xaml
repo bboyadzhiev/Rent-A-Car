@@ -8,8 +8,16 @@
         <Style x:Key="LabelTextBlockStyle" TargetType="TextBlock">
             <Setter Property="FontSize" Value="30" />
         </Style>
-        
-        
+        <x:String x:Key="ProfileIcon">Contact</x:String>
+        <x:String x:Key="RentersAppBarIcon">World</x:String>
+        <Style x:Key="RentersAppBarButton" TargetType="AppBarButton">
+            <Setter Property="Label" Value="Renters" />
+            <Setter Property="Icon" Value="World" />
+        </Style>
+        <Style x:Key="ProfileAppBarButton" TargetType="AppBarButton">
+            <Setter Property="Label" Value="Profile"/>
+            <Setter Property="Icon" Value="Contact"/>
+        </Style>        
         <DataTemplate x:Key="RentersTemplate">
             <StackPanel>
                 <Image Source="{Binding Logo}" Width="150" Height="150"></Image>

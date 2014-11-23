@@ -20,6 +20,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <!-- Title Panel -->
@@ -61,5 +62,11 @@
             -->
            
         </Grid>
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="2"
+                    HorizontalAlignment="Center">
+            <AppBarButton Style="{StaticResource RentersAppBarButton}" Click="OnRentersAppBarButtonClick" />
+            <AppBarButton Style="{StaticResource ProfileAppBarButton}" Click="OnDetailsAppBarButtonClick" />
+        </StackPanel>
     </Grid>
 </Page>
