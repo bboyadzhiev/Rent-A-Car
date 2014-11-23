@@ -31,6 +31,18 @@ namespace Rent_A_Car.ViewModels
         private bool hasAirConditioner;
         private string title;
         private string id;
+        private double price;
+                                
+        public double Price
+        {
+            get { return price; }
+            set
+            {
+                price = value;
+                this.RaisePropertyChanged(() => this.Price);
+            }
+        }
+        
 
         public string Id
         {
@@ -167,7 +179,8 @@ namespace Rent_A_Car.ViewModels
                     Image = CarVM.GetImageFromParseUri(model.Image.Url),
                     Seats = model.Seats,
                     Luggage = model.Luggage,
-                    HasAirconditioner = model.HasAirconditioner
+                    HasAirconditioner = model.HasAirconditioner,
+                    Price = model.Price
                 };
             }
         }
@@ -186,6 +199,7 @@ namespace Rent_A_Car.ViewModels
             car.Seats = model.Seats;
             car.Luggage = model.Luggage;
             car.HasAirconditioner = model.HasAirconditioner;
+            car.Price = model.Price;
             return car;
         }
 

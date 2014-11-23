@@ -29,7 +29,6 @@
                                 <RowDefinition/>
                                 <RowDefinition/>
                                 <RowDefinition/>
-                                <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -41,6 +40,9 @@
                             <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Seats}" Style="{ThemeResource BaseTextBlockStyle}"/>
                             <TextBlock Grid.Row="1" Grid.Column="0" Text="Luggage:" Style="{ThemeResource BaseTextBlockStyle}"/>
                             <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Luggage}" Style="{ThemeResource BaseTextBlockStyle}"/>
+
+                            <TextBlock Grid.Row="2" Grid.Column="0" Text="Price:" Style="{ThemeResource BaseTextBlockStyle}"/>
+                            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Price}" Style="{ThemeResource BaseTextBlockStyle}"/>
 
                         </Grid>
                         <!--<StackPanel>
