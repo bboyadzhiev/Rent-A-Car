@@ -137,7 +137,7 @@ namespace Rent_A_Car.Pages
             }
         }
 
-        private void OnDetailsAppBarButtonClick(object sender, RoutedEventArgs e)
+        private void OnProfileAppBarButtonClick(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(ProfilePage));
         }

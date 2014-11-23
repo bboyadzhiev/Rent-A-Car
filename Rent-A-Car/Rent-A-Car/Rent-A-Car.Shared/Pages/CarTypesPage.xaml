@@ -33,40 +33,12 @@
         <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
             <ProgressRing x:Name="ring" Foreground="Red" Width="100" Height="100" IsActive="{Binding Initializing}"/>
             <usercontrols:CarTypePickerView DataContext="{Binding AvailableTypes}"/>
-           <!--
-             
-            <GridView
-        Margin="0,9.5,0,0"
-        ItemsSource="{Binding AvailableTypes}"
-        AutomationProperties.AutomationId="ItemGridView"
-        AutomationProperties.Name="Items In Group"
-        SelectionMode="Single"
-        SelectionChanged="OnCarTypeSelection"
-                >
-                <GridView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Margin="0,0,9.5,9.5">
-                            <Image Source="{Binding Url}" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}" Height="138.5" Width="138.5"/>
-                            <TextBlock Text="{Binding Title}" Foreground="Black" VerticalAlignment="Bottom" Margin="9.5,0,0,6.5" Style="{ThemeResource BaseTextBlockStyle}"/>
-                            <TextBlock Text="{Binding Count}"  Foreground="Black" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="9.5,5,5,6.5" Style="{ThemeResource BaseTextBlockStyle}"/>
-
-                        </Grid>
-                    </DataTemplate>
-                </GridView.ItemTemplate>
-                <GridView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <ItemsWrapGrid />
-                    </ItemsPanelTemplate>
-                </GridView.ItemsPanel>
-            </GridView>
-            -->
-           
         </Grid>
         <StackPanel Orientation="Horizontal"
                     Grid.Row="2"
                     HorizontalAlignment="Center">
             <AppBarButton Style="{StaticResource RentersAppBarButton}" Click="OnRentersAppBarButtonClick" />
-            <AppBarButton Style="{StaticResource ProfileAppBarButton}" Click="OnDetailsAppBarButtonClick" />
+            <AppBarButton Style="{StaticResource ProfileAppBarButton}" Click="OnProfileAppBarButtonClick" />
         </StackPanel>
     </Grid>
 </Page>

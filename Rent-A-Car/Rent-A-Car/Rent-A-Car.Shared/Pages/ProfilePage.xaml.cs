@@ -15,6 +15,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Rent_A_Car.Pages.Profile;
+using Parse;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -41,11 +43,11 @@ namespace Rent_A_Car.Pages
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
-      
+
             this.ViewModel = viewModel;
         }
 
-        
+
 
         /// <summary>
         /// Gets the <see cref="NavigationHelper"/> associated with this <see cref="Page"/>.
@@ -139,6 +141,19 @@ namespace Rent_A_Car.Pages
             this.ViewModel.Initializing = true;
             await CarManager.ReleaseCar(this.ViewModel.Car);
             this.Frame.Navigate(typeof(RentersPage));
+        }
+
+        private async void OnSignOutAppBarButtonClick(object sender, RoutedEventArgs e)
+        {
+            this.ViewModel.Initializing = true;
+            await CarManager.ReleaseCar(this.ViewModel.Car);
+            ParseUser.LogOut();
+            this.Frame.Navigate(typeof(LoginPage));
+        }
+
+        private void OnCarFinderAppBarButtonClick(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(CarPositionPage));
         }
     }
 }

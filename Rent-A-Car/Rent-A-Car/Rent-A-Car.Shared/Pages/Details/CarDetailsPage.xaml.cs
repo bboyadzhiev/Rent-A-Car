@@ -38,7 +38,7 @@ namespace Rent_A_Car.Pages.Details
         private string carId;
 
         public CarDetailsPage()
-            :this(new CarVM())
+            : this(new CarVM())
         {
 
         }
@@ -140,12 +140,14 @@ namespace Rent_A_Car.Pages.Details
 
         private async void OnRentCarClick(object sender, RoutedEventArgs e)
         {
+            this.ring.IsActive = true;
             var carToRent = this.ViewModel;
             var rented = await CarManager.RentCar(carToRent);
+            this.ring.IsActive = false;
             if (rented)
             {
                 this.Frame.Navigate(typeof(CarPositionPage));
-               // this.Frame.Navigate(typeof(CarPositionPage), carToRent);
+                // this.Frame.Navigate(typeof(CarPositionPage), carToRent);
             }
             else
             {
@@ -155,12 +157,12 @@ namespace Rent_A_Car.Pages.Details
 
         private void OnRentersAppBarButtonClick(object sender, RoutedEventArgs e)
         {
-
+            this.Frame.Navigate(typeof(RentersPage));
         }
 
-        private void OnDetailsAppBarButtonClick(object sender, RoutedEventArgs e)
+        private void OnProfileAppBarButtonClick(object sender, RoutedEventArgs e)
         {
-
+            this.Frame.Navigate(typeof(ProfilePage));
         }
     }
 }

@@ -136,12 +136,30 @@ namespace Rent_A_Car.Pages.Profile
             //user["Car"] = new CarModel() { Plate = "XXXXXXXXXXXXX" };
             //await user.SignUpAsync();
 
+
             var isLoggedIn = await this.ViewModel.Login();
             if (isLoggedIn)
             {
+                await CarManager.HasCarAssigned(this.CarCheckComplete);
+                //this.Frame.Navigate(typeof(RentersPage));
+            }
+        }
+
+        private void CarCheckComplete(object sender, EventArgs e)
+        {
+            if (sender != null)
+            {
+                //has car assigned!
+                this.Frame.Navigate(typeof(CarPositionPage));
+            }
+            else
+            {
+                // no car assigned
                 this.Frame.Navigate(typeof(RentersPage));
             }
         }
+
+        
 
         public LoginPageVM ViewModel
         {

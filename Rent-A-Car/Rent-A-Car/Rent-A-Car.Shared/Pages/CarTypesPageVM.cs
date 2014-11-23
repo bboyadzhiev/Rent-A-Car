@@ -18,8 +18,6 @@ namespace Rent_A_Car.Pages
         private bool initializing;
         private List<int> counts;
 
-
-
         public string PageTitle
         {
             get { return pageTitle; }
@@ -29,8 +27,6 @@ namespace Rent_A_Car.Pages
                 this.RaisePropertyChanged(() => this.PageTitle);
             }
         }
-
-
 
         public IEnumerable<CarTypeVM> AvailableTypes
         {
@@ -137,9 +133,9 @@ namespace Rent_A_Car.Pages
 
             // parseCars = await new ParseQuery<CarModel>().Where(car => car.Renter.ObjectId == renterId).FindAsync();
             parseCars = await new ParseQuery<CarModel>().FindAsync();
-            //  var parseCars = await query.FindAsync();
-            var asd = await parseCars.Where(c => c.Renter.ObjectId == renterId).FetchAllAsync();
-
+          
+            //  var asd = await parseCars.Where(c => c.Renter.ObjectId == renterId).FetchAllAsync();
+            var asd = await parseCars.Where(c => c.Renter.ObjectId == renterId && c.Available == true).FetchAllAsync();
 
 
             var types = asd.AsQueryable()
@@ -150,11 +146,13 @@ namespace Rent_A_Car.Pages
                 this.counts[item]++;
             }
 
-
-
             this.availableTypes.Clear();
             for (int i = 0; i < counts.Count; i++)
             {
+                if (counts[i] == 0)
+                {
+                    continue;
+                }
                 this.availableTypes.Add(new CarTypeVM
                 {
                     CarType = ((CarTypes)i),
@@ -170,41 +168,41 @@ namespace Rent_A_Car.Pages
         }
 
 
-        private async Task FetchAvailableCarTypes()
-        {
-            this.Initializing = true;
+        #region Deprecated
+        //private async Task FetchAvailableCarTypes()
+        //{
+        //    this.Initializing = true;
 
-            if (this.availableTypes == null)
-            {
-                this.availableTypes = new ObservableCollection<CarTypeVM>();
-            }
-            IEnumerable<CarModel> parseCars;
+        //    if (this.availableTypes == null)
+        //    {
+        //        this.availableTypes = new ObservableCollection<CarTypeVM>();
+        //    }
+        //    IEnumerable<CarModel> parseCars;
 
-            parseCars = await new ParseQuery<CarModel>().FindAsync();
+        //    parseCars = await new ParseQuery<CarModel>().FindAsync();
 
-            var types = parseCars.AsQueryable()
-                   .Select(c => c.CarType).ToList();
-            this.counts = new List<int>() { 0, 0, 0, 0, 0, 0 };
-            foreach (int item in types)
-            {
-                this.counts[item]++;
-            }
+        //    var types = parseCars.AsQueryable()
+        //           .Select(c => c.CarType).ToList();
+        //    this.counts = new List<int>() { 0, 0, 0, 0, 0, 0 };
+        //    foreach (int item in types)
+        //    {
+        //        this.counts[item]++;
+        //    }
 
+        //    this.availableTypes.Clear();
+        //    for (int i = 0; i < counts.Count; i++)
+        //    {
+        //        this.availableTypes.Add(new CarTypeVM
+        //        {
+        //            Count = counts[i],
+        //            Title = ((CarTypes)i).ToString(),
+        //            Url = GetCarTypeAssetsUrl((CarTypes)i)
+        //        });
+        //    }
+        //    this.RaisePropertyChanged(() => this.AvailableTypes);
 
-
-            this.availableTypes.Clear();
-            for (int i = 0; i < counts.Count; i++)
-            {
-                this.availableTypes.Add(new CarTypeVM
-                {
-                    Count = counts[i],
-                    Title = ((CarTypes)i).ToString(),
-                    Url = GetCarTypeAssetsUrl((CarTypes)i)
-                });
-            }
-            this.RaisePropertyChanged(() => this.AvailableTypes);
-
-            this.Initializing = false;
-        }
+        //    this.Initializing = false;
+        //}
+        #endregion
     }
 }

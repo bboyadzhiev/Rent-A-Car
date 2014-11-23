@@ -17,18 +17,31 @@
         <Style x:Key="ProfileAppBarButton" TargetType="AppBarButton">
             <Setter Property="Label" Value="Profile"/>
             <Setter Property="Icon" Value="Contact"/>
-        </Style>        
+        </Style>
+        <Style x:Key="CarFinderAppBarButton" TargetType="AppBarButton">
+            <Setter Property="Label" Value="Car"/>
+            <Setter Property="Icon" Value="Up"/>
+        </Style>
+        <Style x:Key="ReleaseCarAppBarButton" TargetType="AppBarButton">
+            <Setter Property="Label" Value="Release"/>
+            <Setter Property="Icon" Value="Clear"/>
+        </Style>
+        <Style x:Key="SignOutAppBarButton" TargetType="AppBarButton">
+            <Setter Property="Label" Value="Sign Out"/>
+            <Setter Property="Icon" Value="ClosePane"/>
+        </Style>
         <DataTemplate x:Key="RentersTemplate">
             <StackPanel>
-                <Image Source="{Binding Logo}" Width="150" Height="150"></Image>
+                <Image Source="{Binding Logo}" HorizontalAlignment="Center" Width="138" Height="138"></Image>
                 <TextBlock Text="{Binding Name}"
-                           FontSize="37"/>
-                <TextBlock Text="{Binding Address}"
-                           FontSize="27"/>
+                           HorizontalAlignment="Center"
+                           FontSize="25"/>
+                <TextBlock Text="{Binding Address}" 
+                           FontSize="15"/>
                 <TextBlock Text="{Binding Location.Latitude}"
-                           FontSize="17"/>
+                           FontSize="10"/>
                 <TextBlock Text="{Binding Location.Longitude}"
-                           FontSize="17"/>
+                           FontSize="10"/>
             </StackPanel>
         </DataTemplate>
         

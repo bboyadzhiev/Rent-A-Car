@@ -112,17 +112,17 @@ namespace Rent_A_Car.Pages
                 //int ct = (int) carType;
                 // parseCars = await new ParseQuery<CarModel>().WhereContains("renter", renterId).WhereContains("CarType", ct.ToString()).FindAsync();
                 // parseCars = await new ParseQuery<CarModel>().Where(c => c.Renter.ObjectId == renterId && c.CarType == carType).FindAsync();
-                filtered = await parseCars.Where(c => c.Renter.ObjectId == renterId && c.CarType == carType).FetchAllAsync();
+                filtered = await parseCars.Where(c => c.Renter.ObjectId == renterId && c.CarType == carType && c.Available == true).FetchAllAsync();
             }
             else if (renterId != null)
             {
                 //parseCars = await new ParseQuery<CarModel>().Where(c => c.Renter.ObjectId == renterId).FindAsync();
-                filtered = await parseCars.Where(c => c.Renter.ObjectId == renterId).FetchAllAsync();
+                filtered = await parseCars.Where(c => c.Renter.ObjectId == renterId && c.Available == true).FetchAllAsync();
             }
             else
             {
                 //parseCars = await new ParseQuery<CarModel>().FindAsync();
-                filtered = await parseCars.FetchAllAsync();
+                filtered = await parseCars.Where(c => c.Available == true).FetchAllAsync();
             }
 
             //this.Cars = parseCars.AsQueryable().Select(CarVM.FromModel);

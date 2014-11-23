@@ -51,12 +51,13 @@
                       ItemTemplate="{StaticResource RentersTemplate}"
                       SelectionMode="Single"
                       SelectionChanged="OnRentersListViewSelectionChanged"
+                      HorizontalAlignment="Center"
                                   />
         </Grid>
         <StackPanel Orientation="Horizontal"
                     Grid.Row="2"
                     HorizontalAlignment="Center">
-            <AppBarButton Label="Profile"  Icon="Contact" Click="OnDetailsAppBarButtonClick"/>
+            <AppBarButton Style="{StaticResource ProfileAppBarButton}" Click="OnProfileAppBarButtonClick"/>
         </StackPanel>
     </Grid>
 </Page>

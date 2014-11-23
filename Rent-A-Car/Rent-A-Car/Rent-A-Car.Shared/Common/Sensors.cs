@@ -26,7 +26,7 @@ namespace Rent_A_Car.Common
 #endif
             locator.DesiredAccuracy = PositionAccuracy.High;
             locator.ReportInterval = 1000; // ms
-            locator.MovementThreshold = 5; //meters
+            locator.MovementThreshold = 3; //meters
             Geolocation();
         }
 

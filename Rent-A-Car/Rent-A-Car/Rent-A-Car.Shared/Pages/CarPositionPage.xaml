@@ -25,7 +25,7 @@
         <!-- Title Panel -->
         <StackPanel Grid.Row="0" Margin="19,0,0,0">
             <TextBlock Text="{StaticResource AppName}" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
-            <TextBlock Text="Where's the car?" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}"/>
+            <TextBlock Text="Where's the car?" Margin="0,6,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}"/>
         </StackPanel>
 
         <!--TODO: Content should be placed within the following grid-->
@@ -50,7 +50,6 @@
                 <StackPanel Grid.Row="0" Grid.ColumnSpan="4" HorizontalAlignment="Center">
                     <TextBlock Text="Distance to car:" FontSize="27"/>
                     <TextBlock Text="{Binding DistanceText}"  FontSize="27"/>
-                    <TextBlock Text="{Binding Bearing}"  FontSize="20"/>
 
                     <Canvas Height="200" 
                         Width="200" 
@@ -128,7 +127,6 @@
         <StackPanel Orientation="Horizontal"
                     Grid.Row="2" 
                     HorizontalAlignment="Center">
-            <AppBarButton Label="Renters" Icon="World" Click="OnRentersAppBarButtonClick" />
             <AppBarButton Label="Profile"  Icon="Contact" Click="OnDetailsAppBarButtonClick"/>
         </StackPanel>
     </Grid>

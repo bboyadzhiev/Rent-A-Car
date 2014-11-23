@@ -30,6 +30,8 @@
 
         <!--TODO: Content should be placed within the following grid-->
         <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
+            <ProgressRing  Grid.RowSpan="4" x:Name="ring" Foreground="Red" Width="300" Height="300"/>
+
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -69,8 +71,8 @@
         <StackPanel Orientation="Horizontal"
                     Grid.Row="2"
                     HorizontalAlignment="Center">
-            <AppBarButton Label="Renters" Icon="World" Click="OnRentersAppBarButtonClick" />
-            <AppBarButton Label="Profile"  Icon="Contact" Click="OnDetailsAppBarButtonClick"/>
+            <AppBarButton Style="{StaticResource RentersAppBarButton}" Click="OnRentersAppBarButtonClick"/>
+            <AppBarButton Style="{StaticResource ProfileAppBarButton}" Click="OnProfileAppBarButtonClick"/>
         </StackPanel>
     </Grid>
 </Page>

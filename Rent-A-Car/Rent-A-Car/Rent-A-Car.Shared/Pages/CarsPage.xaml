@@ -42,9 +42,8 @@
         <StackPanel Orientation="Horizontal"
                     Grid.Row="2"
                     HorizontalAlignment="Center">
-            <AppBarButton Label="Renters" Icon="World" Click="OnRentersAppBarButtonClick" />
-            <AppBarButton Label="Profile"  Icon="Contact" Click="OnDetailsAppBarButtonClick"/>
+            <AppBarButton Style="{StaticResource RentersAppBarButton}" Click="OnRentersAppBarButtonClick" />
+            <AppBarButton Style="{StaticResource ProfileAppBarButton}" Click="OnProfileAppBarButtonClick"/>
         </StackPanel>
     </Grid>
-    
 </Page>

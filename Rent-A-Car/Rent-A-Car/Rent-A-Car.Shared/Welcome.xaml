@@ -8,27 +8,24 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <ProgressRing x:Name="ring" Foreground="Red" Width="100" Height="100" Grid.ColumnSpan="2" Grid.RowSpan="5"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="33,58,0,0" VerticalAlignment="Top" Click="Button_Click" Grid.Row="0"/>
-        <TextBlock Name="latTextBlock" FontSize="34" Grid.Row="1"/>
-        <TextBlock Name="lonTextBlock" FontSize="34" Grid.Row="2"/>
-        <TextBlock Name="fromTextBlock" Grid.Row="3"/>
-        <StackPanel Grid.Row="4">
+        <StackPanel VerticalAlignment="Center">
+        <TextBlock Text="{StaticResource AppName}"
+                   FontSize="40"
+                   FontWeight="ExtraBlack"
+                   Foreground="Bisque"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center">
             
-            <TextBlock Name="userName" />
-        <TextBlock Name="userCar" />
+        </TextBlock>
+        <TextBlock Text="Loading..."
+                   FontSize="30"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center">
+
+        </TextBlock>
+            
+            <ProgressRing x:Name="ring" Foreground="Red" Width="200" Height="200" />
         </StackPanel>
+        
     </Grid>
 </Page>

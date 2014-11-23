@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using Parse;
+using Rent_A_Car.Common;
 using Rent_A_Car.Models;
 
 namespace Rent_A_Car.ViewModels
@@ -17,7 +18,8 @@ namespace Rent_A_Car.ViewModels
 
         public LoginPageVM()
         {
-               // TODO: check for default user
+           
+             
             this.User = new UserVM()
             {
               Username = "Gosho",

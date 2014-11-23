@@ -20,11 +20,11 @@
         </Grid.RowDefinitions>
 
         <!-- Title Panel -->
-        <StackPanel Grid.Row="0" Margin="19,0,0,0">
+        <StackPanel Grid.Row="0" Margin="19,0,0,0" >
             <TextBlock Text="{StaticResource AppName}" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
-            <TextBlock Text="page title" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}"/>
+            <TextBlock Text="User Login" Margin="0,6,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}"/>
         </StackPanel>
-        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
+        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0" >
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -38,11 +38,12 @@
             <TextBox  Text="{Binding User.Username, Mode=TwoWay}"
                        Grid.Row="1"/>
             <TextBlock Text="Password" 
-                       Style="{StaticResource LabelTextBlockStyle}" 
+                       Style="{StaticResource LabelTextBlockStyle}"
                        Grid.Row="2"/>
             <PasswordBox  Password="{Binding User.Password, Mode=TwoWay}"
                        Grid.Row="3"/>
             <Button Content="Login"  
+                    HorizontalAlignment="Center"
                        Grid.Row="4"
                     Click="OnLoginButtonClick"/>
 

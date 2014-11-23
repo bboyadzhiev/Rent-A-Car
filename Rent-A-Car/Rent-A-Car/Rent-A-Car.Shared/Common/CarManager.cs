@@ -128,6 +128,10 @@ namespace Rent_A_Car.Common
         public async static Task ReleaseCar(CarVM carVM)
         {
             var car = await new ParseQuery<CarModel>().Where(c => c.ObjectId == carVM.Id).FirstOrDefaultAsync(CancellationToken.None);
+            if (car == null)
+            {
+                return;
+            }
             if (car.Available == false)
             {
                 car.Available = true;

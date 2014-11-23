@@ -29,7 +29,9 @@
         </GridView.ItemTemplate>
         <GridView.ItemsPanel>
             <ItemsPanelTemplate>
-                <ItemsWrapGrid />
+                
+                <!--<ItemsStackPanel FlowDirection="LeftToRight"/>-->
+                <ItemsWrapGrid  Orientation="Horizontal"/>
             </ItemsPanelTemplate>
         </GridView.ItemsPanel>
     </GridView>

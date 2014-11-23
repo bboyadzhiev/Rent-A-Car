@@ -18,6 +18,18 @@ namespace Rent_A_Car.Pages
         private CarVM car;
         private bool initializing;
         private bool canReleaseCar;
+        private bool canRentCar;
+
+        public bool CanRentCar
+        {
+            get { return canRentCar; }
+            set
+            {
+                canRentCar = value;
+                this.RaisePropertyChanged(() => this.CanRentCar);
+            }
+        }
+        
 
         public ProfilePageVM()
         {
@@ -38,6 +50,7 @@ namespace Rent_A_Car.Pages
                 };
                 // no car
                 this.CanReleaseCar = false;
+                this.CanRentCar = true;
             }
             this.Initializing = false;
 
@@ -55,6 +68,7 @@ namespace Rent_A_Car.Pages
             var car = await new ParseQuery<CarModel>().Where(c => c.ObjectId == carId).FirstOrDefaultAsync(CancellationToken.None);
             this.Car = CarVM.FromCarModel(car);
             this.CanReleaseCar = true;
+            this.CanRentCar = false;
             this.Initializing = false;
         }
 

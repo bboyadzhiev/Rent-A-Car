@@ -35,7 +35,11 @@ namespace Rent_A_Car.ViewModels
         public string Id
         {
             get { return id; }
-            set { id = value; }
+            set
+            {
+                id = value; 
+                this.RaisePropertyChanged(() => this.Id);
+            }
         }
 
 
