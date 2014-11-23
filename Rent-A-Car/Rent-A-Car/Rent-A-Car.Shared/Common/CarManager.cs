@@ -124,6 +124,36 @@ namespace Rent_A_Car.Common
             }
         }
 
+        public static event EventHandler CarReleased;
+        public async static Task ReleaseCar(CarVM carVM)
+        {
+            var car = await new ParseQuery<CarModel>().Where(c => c.ObjectId == carVM.Id).FirstOrDefaultAsync(CancellationToken.None);
+            if (car.Available == false)
+            {
+                car.Available = true;
+            }
+
+            await car.SaveAsync();
+
+            var localSettings = ApplicationData.Current.LocalSettings;
+            localSettings.Values.Remove("userCarId");
+            localSettings.Values.Remove("userCarLat");
+            localSettings.Values.Remove("userCarLat");
+
+            var user = ParseUser.CurrentUser;
+            user["Car"] = null;
+            await user.SaveAsync();
+
+            MessageDialog error = new MessageDialog("You have no assigned car now!", "Done!");
+            await error.ShowAsync();
+            EventHandler handler = CarReleased;
+            if (handler != null)
+            {
+                handler(true, EventArgs.Empty);
+            }
+           
+
+        }
 
         #region Deprecated Methods
         //public async static Task<IEnumerable<CarVM>> FetchCarsForRenterAndType(string renterId, CarTypes? carType)

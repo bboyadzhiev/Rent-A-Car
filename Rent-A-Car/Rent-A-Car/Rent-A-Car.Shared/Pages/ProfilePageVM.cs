@@ -17,12 +17,14 @@ namespace Rent_A_Car.Pages
         private UserVM user;
         private CarVM car;
         private bool initializing;
+        private bool canReleaseCar;
 
         public ProfilePageVM()
         {
             this.Initializing = true;
             var userInfo = ParseUser.CurrentUser;
             this.User = UserVM.FromModel(userInfo);
+            this.CanReleaseCar = false;
             var carId = CarManager.GetUserCarId();
             if (carId != null)
             {
@@ -33,10 +35,18 @@ namespace Rent_A_Car.Pages
                 this.Car = new CarVM()
                 {
                     Plate = "No car assigned!"
-
                 };
                 // no car
+                this.CanReleaseCar = false;
             }
+            this.Initializing = false;
+
+            CarManager.CarReleased += this.CarHasBeenReleased;
+        }
+
+        private void CarHasBeenReleased(object sender, EventArgs e)
+        {
+           
             this.Initializing = false;
         }
 
@@ -44,7 +54,18 @@ namespace Rent_A_Car.Pages
         {
             var car = await new ParseQuery<CarModel>().Where(c => c.ObjectId == carId).FirstOrDefaultAsync(CancellationToken.None);
             this.Car = CarVM.FromCarModel(car);
+            this.CanReleaseCar = true;
             this.Initializing = false;
+        }
+
+        public bool CanReleaseCar
+        {
+            get { return canReleaseCar; }
+            set
+            {
+                canReleaseCar = value;
+                this.RaisePropertyChanged(() => this.CanReleaseCar);
+            }
         }
 
         public bool Initializing

@@ -29,7 +29,7 @@ namespace Rent_A_Car.Pages
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
         public ProfilePage()
-            :this(new ProfilePageVM())
+            : this(new ProfilePageVM())
         {
 
         }
@@ -41,9 +41,11 @@ namespace Rent_A_Car.Pages
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
-
+      
             this.ViewModel = viewModel;
         }
+
+        
 
         /// <summary>
         /// Gets the <see cref="NavigationHelper"/> associated with this <see cref="Page"/>.
@@ -130,6 +132,13 @@ namespace Rent_A_Car.Pages
             {
                 this.DataContext = value;
             }
+        }
+
+        private async void OnReleaseCarClick(object sender, RoutedEventArgs e)
+        {
+            this.ViewModel.Initializing = true;
+            await CarManager.ReleaseCar(this.ViewModel.Car);
+            this.Frame.Navigate(typeof(RentersPage));
         }
     }
 }

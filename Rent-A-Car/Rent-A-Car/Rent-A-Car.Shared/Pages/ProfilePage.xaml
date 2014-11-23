@@ -53,7 +53,8 @@
                        Source="{Binding Car.Image}" 
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center" />
-            </StackPanel>
+                    <Button Content="Release Car!" IsEnabled="{Binding CanReleaseCar}" HorizontalAlignment="Center" Click="OnReleaseCarClick"/>
+                </StackPanel>
             </Grid>
         </Grid>
         <StackPanel Orientation="Horizontal"
