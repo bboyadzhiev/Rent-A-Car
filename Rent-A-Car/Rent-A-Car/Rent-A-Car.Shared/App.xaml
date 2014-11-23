@@ -31,13 +31,23 @@
             <Setter Property="Icon" Value="ClosePane"/>
         </Style>
         <DataTemplate x:Key="RentersTemplate">
-            <StackPanel>
+            <StackPanel Width="300">
                 <Image Source="{Binding Logo}" HorizontalAlignment="Center" Width="138" Height="138"></Image>
                 <TextBlock Text="{Binding Name}"
                            HorizontalAlignment="Center"
                            FontSize="25"/>
                 <TextBlock Text="{Binding Address}" 
                            FontSize="15"/>
+                <GridView>
+                    <TextBlock  Text="Distance:"
+                                HorizontalAlignment="Left"
+                               FontSize="15"/>
+                    <TextBlock Text="{Binding Distance}" 
+                               FontSize="15"/>
+                    <TextBlock  Text=" m"
+                                HorizontalAlignment="Left"
+                               FontSize="15"/>
+                </GridView>
                 <TextBlock Text="{Binding Location.Latitude}"
                            FontSize="10"/>
                 <TextBlock Text="{Binding Location.Longitude}"
@@ -55,15 +65,15 @@
                     <Image Source="{Binding Image}" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
                 </Border>
                 <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="14.5,0,0,0">
-                    <TextBlock Text="{Binding Title}" Style="{ThemeResource ListViewItemTextBlockStyle}"/>
-                    <TextBlock Text="{Binding Description}" Style="{ThemeResource ListViewItemContentTextBlockStyle}" Foreground="{ThemeResource PhoneMidBrush}"/>
+                    <TextBlock Text="{Binding Title}" />
+                    <TextBlock Text="{Binding Description}" />
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="Seats:" Style="{ThemeResource ListViewItemSubheaderTextBlockStyle}"/>
-                        <TextBlock Grid.Column="1" Text="{Binding Seats}" Style="{ThemeResource ListViewItemSubheaderTextBlockStyle}"/>
+                        <TextBlock Grid.Column="0" Text="Seats:" />
+                        <TextBlock Grid.Column="1" Text="{Binding Seats}" />
                     </Grid>
                 </StackPanel>
             </Grid>

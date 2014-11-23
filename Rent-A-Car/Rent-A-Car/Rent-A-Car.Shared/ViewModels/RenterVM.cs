@@ -9,6 +9,8 @@ using Parse;
 using Rent_A_Car.Models;
 using Windows.Storage.Streams;
 using Windows.UI.Xaml.Media.Imaging;
+using Parse;
+using Rent_A_Car.Common;
 
 namespace Rent_A_Car.ViewModels
 {
@@ -19,6 +21,28 @@ namespace Rent_A_Car.ViewModels
         private string address;
         private BitmapImage logo;
         private ParseGeoPoint location;
+        private int distance;
+
+        public RenterVM()
+        {
+            Sensors.LocationChanged += this.UpdateVM;
+        }
+
+        private void UpdateVM(object sender, EventArgs e)
+        {
+            this.Distance =  (int) (new ParseGeoPoint(Sensors.lattitude, Sensors.longitude).DistanceTo(this.Location).Kilometers * 1000); //[m]
+        }
+
+        public int Distance
+        {
+            get { return distance; }
+            set
+            {
+                distance = value;
+                this.RaisePropertyChanged(() => this.Distance);
+            }
+        }
+        
 
         public ParseGeoPoint Location
         {

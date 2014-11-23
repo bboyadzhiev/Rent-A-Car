@@ -8,6 +8,7 @@ using GalaSoft.MvvmLight;
 using Parse;
 using Rent_A_Car.Models;
 using Rent_A_Car.ViewModels;
+using System.Linq;
 
 namespace Rent_A_Car.Pages
 {
@@ -37,6 +38,7 @@ namespace Rent_A_Car.Pages
                 {
                     this.renters.Add(item);
                 }
+                this.renters.OrderBy(r => r.Distance);
                 this.RaisePropertyChanged(() => this.Renters);
             }
         }

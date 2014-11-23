@@ -16,10 +16,11 @@ namespace Rent_A_Car.ViewModels
 
         public static UserVM FromModel(ParseUser parseUser)
         {
+            var car = parseUser["Car"] as CarModel;
             return new UserVM()
             {
                 Username = parseUser.Username,
-                Car = parseUser["Car"] as CarModel
+                Car = car
             };
         }
     }

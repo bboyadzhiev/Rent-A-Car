@@ -77,7 +77,7 @@ namespace Rent_A_Car.Pages
         public CarTypesPageVM(RenterVM renter)
         {
             this.Initializing = true;
-            this.PageTitle = string.Format("{0}'s car types", renter.Name);
+            this.PageTitle = string.Format("{0}'s chice", renter.Name);
             // var renterId = renter.Id;
             this.FetchAvailableCarTypesForRenter(renter);
         }
