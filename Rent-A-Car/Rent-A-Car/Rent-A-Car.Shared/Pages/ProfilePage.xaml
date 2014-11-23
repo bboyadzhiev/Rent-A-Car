@@ -27,20 +27,34 @@
             <TextBlock Text="{StaticResource AppName}" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
             <TextBlock Text="Profile" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}"/>
         </StackPanel>
+       
 
         <!--TODO: Content should be placed within the following grid-->
-        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0"  DataContext="{Binding User}">
+        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0" >
+            <ProgressRing Grid.RowSpan="4" x:Name="ring" Foreground="Red" Width="300" Height="300" IsActive="{Binding Initializing}"/>
+            <Grid>
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
-                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-           
-                <TextBlock Text="{Binding Username}" Grid.Row="0" Grid.Column="0" />
-          
+           <TextBlock Grid.Row="0"  Text="Hello, " FontSize="20" HorizontalAlignment="Center"/>
+            <TextBlock Grid.Row="1" Text="{Binding User.Username}" FontSize="20" HorizontalAlignment="Center"/>
+            <TextBlock Grid.Row="2" Text=" " FontSize="35"  />
+            <StackPanel Grid.Row="3" HorizontalAlignment="Center">
+                    <TextBlock Grid.Row="0"  Text="Car Info:" FontSize="20" HorizontalAlignment="Center"/>
+                    <TextBlock FontSize="20" Text="{Binding Car.Plate}" HorizontalAlignment="Center"/>
+                <Image Width="300"
+                       Height="300"
+                       Source="{Binding Car.Image}" 
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center" />
+            </StackPanel>
+            </Grid>
         </Grid>
         <StackPanel Orientation="Horizontal"
                     Grid.Row="2"

@@ -127,7 +127,8 @@ namespace Rent_A_Car.Pages
             Sensors.AccelerometerChanged += this.UpdatePitch;
             
             GetCarDataFromParse(CarManager.GetUserCarId());
-
+            
+           
 
         }
 
@@ -152,6 +153,7 @@ namespace Rent_A_Car.Pages
             var car = await new ParseQuery<CarModel>().Where(c => c.ObjectId == carId).FirstOrDefaultAsync(CancellationToken.None);
             this.Car = CarVM.FromCarModel(car);
             this.Initializing = false;
+            this.UpdateLocations(null, null);
         }
 
         private void UpdateInclination(object sender, EventArgs e)
@@ -159,11 +161,11 @@ namespace Rent_A_Car.Pages
             this.Inclination = Sensors.inclinationReadings;
         }
 
-        private void UpdateLocations(object sender, EventArgs e)
+        public void UpdateLocations(object sender, EventArgs e)
         {
             var lat = Sensors.lattitude; var lon = Sensors.longitude;
             this.UserLocation = new ParseGeoPoint(lat, lon);
-            this.DistanceToCar = userLocation.DistanceTo(this.car.Location).Kilometers;
+            this.DistanceToCar = userLocation.DistanceTo(this.Car.Location).Kilometers;
             this.Bearing = GeopositionHelper.GetBearing(this.UserLocation, this.Car.Location);
         }
 

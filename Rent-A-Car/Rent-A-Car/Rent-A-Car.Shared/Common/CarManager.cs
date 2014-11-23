@@ -65,6 +65,20 @@ namespace Rent_A_Car.Common
             }
             CarModel car = null;
             res.TryGetValue<CarModel>("Car", out car);
+            // gaetcar
+            if (car == null)
+            {
+                if (handler != null)
+                {
+                    handler(null, EventArgs.Empty);
+                    return;
+                }
+            }
+            var carFound = await new ParseQuery<CarModel>().Where(c => c.ObjectId == car.ObjectId).FirstOrDefaultAsync(CancellationToken.None);
+            var localSettings = ApplicationData.Current.LocalSettings;
+            localSettings.Values["userCarId"] = car.ObjectId;
+            localSettings.Values["userCarLat"] = car.Location.Latitude;
+            localSettings.Values["userCarLon"] = car.Location.Longitude;
 
             if (handler != null)
             {
@@ -86,9 +100,31 @@ namespace Rent_A_Car.Common
             var localSettings = ApplicationData.Current.LocalSettings;
             return (string)localSettings.Values["userCarId"];
         }
-       
 
-   
+        public static async Task ParkCarToCurrentLocation(CarVM carVM)
+        {
+            var localSettings = ApplicationData.Current.LocalSettings;
+            localSettings.Values["userCarId"] = carVM.Id;
+            localSettings.Values["userCarLat"] = carVM.Location.Latitude;
+            localSettings.Values["userCarLon"] = carVM.Location.Longitude;
+
+            var car = await new ParseQuery<CarModel>().Where(c => c.ObjectId == carVM.Id).FirstOrDefaultAsync(CancellationToken.None);
+            if (car != null)
+            {
+
+                car.Location = carVM.Location;
+                await car.SaveAsync();
+                MessageDialog error = new MessageDialog("Car " + car.Plate + "\n is now parked here!", "Done!");
+                await error.ShowAsync();
+            }
+            else
+            {
+                MessageDialog error = new MessageDialog("Car " + car.Plate + "\n could not be updated to database!", "Warning!");
+                await error.ShowAsync();
+            }
+        }
+
+
         #region Deprecated Methods
         //public async static Task<IEnumerable<CarVM>> FetchCarsForRenterAndType(string renterId, CarTypes? carType)
         //{
@@ -108,7 +144,7 @@ namespace Rent_A_Car.Common
         //    var result =  filtered.AsQueryable().Select(CarVM.FromModel);
         //    return result;
         //}
-                  
+
 
         //public async static Task<bool> HasCar()
         //{

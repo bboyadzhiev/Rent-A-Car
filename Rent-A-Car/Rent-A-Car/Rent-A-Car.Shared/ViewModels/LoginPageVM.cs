@@ -22,7 +22,6 @@ namespace Rent_A_Car.ViewModels
             {
               Username = "Gosho",
               Password = "gogo",
-             // Car = new CarModel() { Plate="XXXXXXXXXXXXX" }
             };
         }
 

@@ -68,11 +68,13 @@ namespace Rent_A_Car.Pages
 
         public CarsPageVM()
         {
+            this.Initializing = true;
             this.PageTitle = string.Format("All cars");
             this.FetchCarsForRenterAndType(null, null);
         }
         public CarsPageVM(string renterId)
         {
+            this.Initializing = true;
             this.PageTitle = string.Format("All renters' cars");
             this.FetchCarsForRenterAndType(renterId, null);
         }
@@ -82,7 +84,7 @@ namespace Rent_A_Car.Pages
             this.PageTitle = string.Format("All renters' {0}s", carType.ToString().ToLower());
             //this.Cars =  CarManager.FetchCarsForRenterAndType(renterId, carType);
             this.FetchCarsForRenterAndType(renterId, carType);
-            this.Initializing = false;
+            
         }
         private async Task FetchCarsForRenterAndType3(string renterId, CarTypes carType)
         {

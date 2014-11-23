@@ -106,7 +106,6 @@ namespace Rent_A_Car.Pages
         /// handlers that cannot cancel the navigation request.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-       
             this.navigationHelper.OnNavigatedTo(e);
         }
 
@@ -139,7 +138,16 @@ namespace Rent_A_Car.Pages
 
         private void OnDetailsAppBarButtonClick(object sender, RoutedEventArgs e)
         {
+            this.Frame.Navigate(typeof(ProfilePage));
+        }
 
+        private async void OnParkHereClick(object sender, RoutedEventArgs e)
+        {
+            this.ViewModel.Initializing = true;
+            this.ViewModel.Car.Location = this.ViewModel.UserLocation;
+            await CarManager.ParkCarToCurrentLocation(this.ViewModel.Car);
+            this.ViewModel.Initializing = false;
+            this.ViewModel.UpdateLocations(null, null);
         }
     }
 }

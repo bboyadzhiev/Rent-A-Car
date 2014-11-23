@@ -29,12 +29,20 @@ namespace Rent_A_Car.Pages
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
         public ProfilePage()
+            :this(new ProfilePageVM())
+        {
+
+        }
+
+        public ProfilePage(ProfilePageVM viewModel)
         {
             this.InitializeComponent();
 
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
+
+            this.ViewModel = viewModel;
         }
 
         /// <summary>
@@ -111,6 +119,17 @@ namespace Rent_A_Car.Pages
         private void OnRentersAppBarButtonClick(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(RentersPage));
+        }
+        public ProfilePageVM ViewModel
+        {
+            get
+            {
+                return (ProfilePageVM)this.DataContext;
+            }
+            set
+            {
+                this.DataContext = value;
+            }
         }
     }
 }

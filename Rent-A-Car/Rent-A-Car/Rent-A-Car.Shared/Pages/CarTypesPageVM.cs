@@ -73,12 +73,14 @@ namespace Rent_A_Car.Pages
 
         public CarTypesPageVM()
         {
+            this.Initializing = true;
             this.PageTitle = string.Format("All renters types");
             this.FetchAvailableCarTypesForRenter(null);
         }
 
         public CarTypesPageVM(RenterVM renter)
         {
+            this.Initializing = true;
             this.PageTitle = string.Format("{0}'s car types", renter.Name);
             // var renterId = renter.Id;
             this.FetchAvailableCarTypesForRenter(renter);
@@ -116,8 +118,8 @@ namespace Rent_A_Car.Pages
 
         private async Task FetchAvailableCarTypesForRenter(RenterVM renter)
         {
-            this.Initializing = true;
 
+            this.Initializing = true;
             if (this.availableTypes == null)
             {
                 this.availableTypes = new ObservableCollection<CarTypeVM>();

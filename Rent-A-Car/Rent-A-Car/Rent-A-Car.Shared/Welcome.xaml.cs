@@ -29,21 +29,7 @@ namespace Rent_A_Car
     /// </summary>
     public sealed partial class Welcome : Page
     {
-        private bool booleanvalue;
-
-        public bool Booleanvalue
-        {
-            get { return booleanvalue; }
-            set
-            {
-                booleanvalue = value;
-                if (value == true)
-                {
-                    this.Frame.Navigate(typeof(RentersPage));
-                }
-            }
-        }
-
+        
         private event EventHandler CarResult;
 
         public Welcome()
