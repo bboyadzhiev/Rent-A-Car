@@ -155,5 +155,13 @@ namespace Rent_A_Car.Pages
         {
             this.Frame.Navigate(typeof(CarPositionPage));
         }
+
+        private void OnManipulation_Completed(object sender, ManipulationCompletedRoutedEventArgs e)
+        {
+            if (Math.Abs(e.Cumulative.Translation.X) > this.Frame.ActualWidth/3)
+            {
+                this.Frame.Navigate(typeof(CarPositionPage));
+            }
+        }
     }
 }

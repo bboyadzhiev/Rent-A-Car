@@ -40,7 +40,7 @@ namespace Rent_A_Car.Pages
                 this.RaisePropertyChanged(() => this.Pitch);
             }
         }
-        
+
 
         public double NorthPoleBearing
         {
@@ -51,7 +51,7 @@ namespace Rent_A_Car.Pages
                 this.RaisePropertyChanged(() => this.NorthPoleBearing);
             }
         }
-        
+
 
         public double Bearing
         {
@@ -62,7 +62,7 @@ namespace Rent_A_Car.Pages
                 this.RaisePropertyChanged(() => this.Bearing);
             }
         }
-        
+
 
         public string DistanceText
         {
@@ -73,7 +73,7 @@ namespace Rent_A_Car.Pages
                 this.RaisePropertyChanged(() => this.DistanceText);
             }
         }
-        
+
 
         public double AccelZ
         {
@@ -84,7 +84,7 @@ namespace Rent_A_Car.Pages
                 this.RaisePropertyChanged(() => this.AccelZ);
             }
         }
-        
+
 
         public double AccelY
         {
@@ -95,7 +95,7 @@ namespace Rent_A_Car.Pages
                 this.RaisePropertyChanged(() => this.AccelY);
             }
         }
-        
+
 
         public double AccelX
         {
@@ -106,7 +106,7 @@ namespace Rent_A_Car.Pages
                 this.RaisePropertyChanged(() => this.AccelX);
             }
         }
-        
+
 
         public InclinometerReading Inclination
         {
@@ -125,10 +125,10 @@ namespace Rent_A_Car.Pages
             Sensors.LocationChanged += this.UpdateLocations;
             Sensors.InclinationChenged += this.UpdateInclination;
             Sensors.AccelerometerChanged += this.UpdatePitch;
-            
+
             GetCarDataFromParse(CarManager.GetUserCarId());
-            
-           
+
+
 
         }
 
@@ -137,6 +137,9 @@ namespace Rent_A_Car.Pages
             this.AccelX = Sensors.accelX;
             this.AccelY = Sensors.accelY;
             this.AccelZ = Sensors.accelZ;
+#if WINDOWS_PHONE_APP
+
+
             if (Sensors.accelZ < 0)
             {
                 this.Pitch = 1* Sensors.accelZ * (-1);
@@ -145,7 +148,9 @@ namespace Rent_A_Car.Pages
             {
                 this.Pitch = 1 * Sensors.accelZ;
             }
-            
+#else
+            this.Pitch = 1;
+#endif
         }
 
         public async Task GetCarDataFromParse(string carId)
@@ -169,7 +174,7 @@ namespace Rent_A_Car.Pages
             this.Bearing = GeopositionHelper.GetBearing(this.UserLocation, this.Car.Location);
         }
 
-        
+
 
         public double DistanceToCar
         {
@@ -185,7 +190,7 @@ namespace Rent_A_Car.Pages
                 {
                     this.DistanceText = string.Format("{0:0.00} m", distanceToCar * 1000);
                 }
-               
+
                 this.RaisePropertyChanged(() => this.DistanceToCar);
             }
         }

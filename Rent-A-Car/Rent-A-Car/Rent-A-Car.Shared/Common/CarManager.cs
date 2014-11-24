@@ -114,19 +114,27 @@ namespace Rent_A_Car.Common
 
                 car.Location = carVM.Location;
                 await car.SaveAsync();
-                MessageDialog error = new MessageDialog("Car " + car.Plate + "\n is now parked here!", "Done!");
-                await error.ShowAsync();
+                MessageDialog done = new MessageDialog("Car " + car.Plate + "\n is now parked here!", "Done!");
+                await done.ShowAsync();
             }
             else
             {
-                MessageDialog error = new MessageDialog("Car " + car.Plate + "\n could not be updated to database!", "Warning!");
-                await error.ShowAsync();
+                MessageDialog warning = new MessageDialog("Car " + car.Plate + "\n could not be updated to database!", "Warning!");
+                await warning.ShowAsync();
             }
         }
 
         public static event EventHandler CarReleased;
         public async static Task ReleaseCar(CarVM carVM)
         {
+            //MessageDialog sure = new MessageDialog("You have no assigned car now!", "Done!");
+            //await sure.ShowAsync();
+
+            var localSettings = ApplicationData.Current.LocalSettings;
+            localSettings.Values.Remove("userCarId");
+            localSettings.Values.Remove("userCarLat");
+            localSettings.Values.Remove("userCarLat");
+
             var car = await new ParseQuery<CarModel>().Where(c => c.ObjectId == carVM.Id).FirstOrDefaultAsync(CancellationToken.None);
             if (car == null)
             {
@@ -139,17 +147,14 @@ namespace Rent_A_Car.Common
 
             await car.SaveAsync();
 
-            var localSettings = ApplicationData.Current.LocalSettings;
-            localSettings.Values.Remove("userCarId");
-            localSettings.Values.Remove("userCarLat");
-            localSettings.Values.Remove("userCarLat");
+          
 
             var user = ParseUser.CurrentUser;
             user["Car"] = null;
             await user.SaveAsync();
 
-            MessageDialog error = new MessageDialog("You have no assigned car now!", "Done!");
-            await error.ShowAsync();
+            MessageDialog done = new MessageDialog("You have no assigned car now!", "Done!");
+            await done.ShowAsync();
             EventHandler handler = CarReleased;
             if (handler != null)
             {

@@ -86,20 +86,6 @@ namespace Rent_A_Car.Pages
             this.FetchCarsForRenterAndType(renterId, carType);
             
         }
-        private async Task FetchCarsForRenterAndType3(string renterId, CarTypes carType)
-        {
-            // IEnumerable<CarModel> filtered;
-
-           // var query = await new ParseQuery<CarModel>().Where(c => c.Available && c.CarType == carType && c.Renter.ObjectId == renterId).FirstOrDefaultAsync(CancellationToken.None);
-           // var car = await new ParseQuery<CarModel>().Where(c => c.Renter.ObjectId == renterId).FirstOrDefaultAsync(CancellationToken.None);
-            var s = carType;
-            var car = await new ParseQuery<CarModel>().Where(c => (int)c.CarType == 3).FirstOrDefaultAsync(CancellationToken.None);
-            
-            var b = 5;
-
-
-
-        }
 
         private async Task FetchCarsForRenterAndType(string renterId, CarTypes? carType)
         {
@@ -131,6 +117,7 @@ namespace Rent_A_Car.Pages
             this.Initializing = false;
         }
 
+        #region Deprecated
         private async Task FetchCarsForRenterAndType2(string renterId, CarTypes carType)
         {
             this.Initializing = true;
@@ -142,5 +129,16 @@ namespace Rent_A_Car.Pages
                    .Select(CarVM.FromModel);
             this.Initializing = false;
         }
+
+        private async Task FetchCarsForRenterAndType3(string renterId, CarTypes carType)
+        {
+            // IEnumerable<CarModel> filtered;
+
+            // var query = await new ParseQuery<CarModel>().Where(c => c.Available && c.CarType == carType && c.Renter.ObjectId == renterId).FirstOrDefaultAsync(CancellationToken.None);
+            // var car = await new ParseQuery<CarModel>().Where(c => c.Renter.ObjectId == renterId).FirstOrDefaultAsync(CancellationToken.None);
+            var s = carType;
+            var car = await new ParseQuery<CarModel>().Where(c => (int)c.CarType == 3).FirstOrDefaultAsync(CancellationToken.None);
+        }
+        #endregion
     }
 }

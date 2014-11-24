@@ -6,8 +6,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    ManipulationMode="TranslateX"
+    ManipulationCompleted="OnManipulation_Completed"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    
     <Grid x:Name="LayoutRoot">
 
         <Grid.ChildrenTransitions>
@@ -25,8 +27,8 @@
         <!-- Title Panel -->
         <StackPanel Grid.Row="0" Margin="19,0,0,0">
             <TextBlock Text="{StaticResource AppName}" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
-            <TextBlock Text="Where's my car," Margin="0,6,0,6" FontSize="40" HorizontalAlignment="Center" Style="{ThemeResource HeaderTextBlockStyle}"/>
-            <TextBlock Text="Dude?" Margin="0,0,0,26.5" FontSize="40" HorizontalAlignment="Center"  Style="{ThemeResource HeaderTextBlockStyle}"/>
+            <TextBlock Text="Where's my car," Margin="0,6,0,6" FontSize="35" HorizontalAlignment="Center" Style="{ThemeResource HeaderTextBlockStyle}"/>
+            <TextBlock Text="Dude?" Margin="0,0,0,3" FontSize="35" HorizontalAlignment="Center"  Style="{ThemeResource HeaderTextBlockStyle}"/>
         </StackPanel>
 
         <!--TODO: Content should be placed within the following grid-->

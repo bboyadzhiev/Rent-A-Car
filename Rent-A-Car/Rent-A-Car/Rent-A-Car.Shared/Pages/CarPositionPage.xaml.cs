@@ -109,9 +109,6 @@ namespace Rent_A_Car.Pages
             this.navigationHelper.OnNavigatedTo(e);
         }
 
-     
-        
-
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             this.navigationHelper.OnNavigatedFrom(e);
@@ -143,6 +140,14 @@ namespace Rent_A_Car.Pages
             await CarManager.ParkCarToCurrentLocation(this.ViewModel.Car);
             this.ViewModel.Initializing = false;
             this.ViewModel.UpdateLocations(null, null);
+        }
+
+        private void OnManipulation_Completed(object sender, ManipulationCompletedRoutedEventArgs e)
+        {
+            if (Math.Abs(e.Cumulative.Translation.X) > this.Frame.ActualWidth / 3)
+            {
+                this.Frame.Navigate(typeof(ProfilePage));
+            }
         }
     }
 }
