@@ -25,13 +25,13 @@
         <!-- Title Panel -->
         <StackPanel Grid.Row="0" Margin="19,0,0,0">
             <TextBlock Text="{StaticResource AppName}" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
-            <TextBlock Text="{Binding PageTitle}" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}"/>
+            <TextBlock Text="Car Details" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}"/>
         </StackPanel>
 
         <!--TODO: Content should be placed within the following grid-->
         <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
             <ProgressRing  Grid.RowSpan="4" x:Name="ring" Foreground="Red" Width="300" Height="300"/>
-
+            <ScrollViewer>
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -40,34 +40,52 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
-                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Grid Grid.Row="0" 
-                      Grid.Column="0">
+           
+                    <StackPanel Grid.Row="0" 
+                      Grid.ColumnSpan="2">
+                        
+                            <TextBlock Text="{Binding Title}" FontSize="30" HorizontalAlignment="Center"/>
                     <Image 
-                        Width="150"
+                        Width="200"
                         Source="{Binding Image}"/>
-                </Grid>
-                <Grid Grid.Row="0" Grid.Column="1">
+                    </StackPanel>
+            
+                <Grid Grid.Row="1" Grid.Column="0">
                     <StackPanel>
                         <StackPanel VerticalAlignment="Top">
-                            <TextBlock Text="{Binding Title}"/>
-                            <TextBlock Text="{Binding Plate}"/>
+                            <TextBlock Text="{Binding Plate}" HorizontalAlignment="Center"/>
+                            <TextBlock Text="{Binding Description}" HorizontalAlignment="Center"/>
+                            
                         </StackPanel>
-                        <StackPanel VerticalAlignment="Bottom">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                        </Grid>
+                        <TextBlock Grid.Column="0" Grid.Row="0" Text="Seats: "/>
+                        <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Seats}" />
+                        <TextBlock Grid.Column="0" Grid.Row="0" Text="Luggage: "/>
+                        <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Luggage}" />
+                        <TextBlock Grid.Column="0" Grid.Row="0" Text="Daily rent: "/>
+                        <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Price}" />
+                        <StackPanel>
                             <TextBlock Text="{Binding Location.Lattitude}"/>
                             <TextBlock Text="{Binding Location.Longitude}"/>
                         </StackPanel>
                     </StackPanel>
                 </Grid>
-                <Grid Grid.Row="1" Grid.Column="0">
-                    
-                </Grid>
-                <Grid Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+         
+                <Grid Grid.Row="2"  HorizontalAlignment="Center">
                     <Button Content="Rent this car!" Click="OnRentCarClick"/>
                 </Grid>
             </Grid>
+            </ScrollViewer>
         </Grid>
+            
         <StackPanel Orientation="Horizontal"
                     Grid.Row="2"
                     HorizontalAlignment="Center">

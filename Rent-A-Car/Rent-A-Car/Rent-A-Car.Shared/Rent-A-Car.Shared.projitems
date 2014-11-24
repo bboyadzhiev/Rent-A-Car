@@ -37,7 +37,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Details\CarDetailsPage.xaml.cs">
       <DependentUpon>CarDetailsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Pages\Details\CarDetailsPageVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\ProfilePage.xaml.cs">
       <DependentUpon>ProfilePage.xaml</DependentUpon>
     </Compile>

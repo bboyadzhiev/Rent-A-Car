@@ -25,13 +25,13 @@
         <!-- Title Panel -->
         <StackPanel Grid.Row="0" Margin="19,0,0,0">
             <TextBlock Text="{StaticResource AppName}" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
-            <TextBlock Text="Where's the car?" Margin="0,6,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}"/>
+            <TextBlock Text="Where's my car," Margin="0,6,0,6" FontSize="40" HorizontalAlignment="Center" Style="{ThemeResource HeaderTextBlockStyle}"/>
+            <TextBlock Text="Dude?" Margin="0,0,0,26.5" FontSize="40" HorizontalAlignment="Center"  Style="{ThemeResource HeaderTextBlockStyle}"/>
         </StackPanel>
 
         <!--TODO: Content should be placed within the following grid-->
         <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
-            <ProgressRing x:Name="ring" Foreground="Red" Width="100" Height="100" IsActive="{Binding Initializing}"/>
-
+            <ProgressRing x:Name="ring" Foreground="Red" Width="150" Height="150" IsActive="{Binding Initializing}"/>
             <Grid x:Name="Content">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>

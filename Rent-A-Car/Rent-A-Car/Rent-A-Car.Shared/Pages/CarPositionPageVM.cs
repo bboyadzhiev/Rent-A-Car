@@ -137,13 +137,13 @@ namespace Rent_A_Car.Pages
             this.AccelX = Sensors.accelX;
             this.AccelY = Sensors.accelY;
             this.AccelZ = Sensors.accelZ;
-            if (Sensors.accelY < 0)
+            if (Sensors.accelZ < 0)
             {
-                this.Pitch = 1* Sensors.accelY * (-1);
+                this.Pitch = 1* Sensors.accelZ * (-1);
             }
             else
             {
-                this.Pitch = 1 * Sensors.accelY;
+                this.Pitch = 1 * Sensors.accelZ;
             }
             
         }
