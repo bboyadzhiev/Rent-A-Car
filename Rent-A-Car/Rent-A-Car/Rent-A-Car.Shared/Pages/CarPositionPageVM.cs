@@ -122,6 +122,7 @@ namespace Rent_A_Car.Pages
         {
             this.DistanceText = "Positioning...";
             this.Initializing = true;
+            this.Pitch = 1;
             Sensors.LocationChanged += this.UpdateLocations;
             Sensors.InclinationChenged += this.UpdateInclination;
             Sensors.AccelerometerChanged += this.UpdatePitch;

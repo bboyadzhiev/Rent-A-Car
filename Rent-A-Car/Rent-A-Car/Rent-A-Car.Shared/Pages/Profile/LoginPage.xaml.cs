@@ -22,7 +22,7 @@ using Rent_A_Car.Models;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
-namespace Rent_A_Car.Pages.Profile     
+namespace Rent_A_Car.Pages.Profile
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
@@ -136,13 +136,43 @@ namespace Rent_A_Car.Pages.Profile
             //user["Car"] = new CarModel() { Plate = "XXXXXXXXXXXXX" };
             //await user.SignUpAsync();
 
-
-            var isLoggedIn = await this.ViewModel.Login();
-            if (isLoggedIn)
+            var parseErrorOccured = false;
+            
+            ParseException.ErrorCode parseErrorCode = ParseException.ErrorCode.OtherCause;
+            try
             {
-                await CarManager.HasCarAssigned(this.CarCheckComplete);
-                //this.Frame.Navigate(typeof(RentersPage));
+                var isLoggedIn = await this.ViewModel.Login();
+                if (isLoggedIn)
+                {
+                    await CarManager.HasCarAssigned(this.CarCheckComplete);
+                    //this.Frame.Navigate(typeof(RentersPage));
+                }
+
             }
+            catch (Exception ex)
+            {
+                if (ex is ParseException)
+                {
+                    parseErrorOccured = true;
+                    parseErrorCode = (ex as ParseException).Code;
+                }
+            }
+
+            if (parseErrorOccured)
+            {
+                MessageDialog error = null;
+                if (parseErrorCode == ParseException.ErrorCode.ObjectNotFound)
+                {
+                    error = new MessageDialog("Check your credentials!", "Login Failed!");
+                }
+                if (parseErrorCode == ParseException.ErrorCode.OtherCause)
+                {
+
+                    error = new MessageDialog("Login not successfull\ncheck your connection!", "Sorry!");
+                }
+                await error.ShowAsync();
+            }
+
         }
 
         private void CarCheckComplete(object sender, EventArgs e)
@@ -159,7 +189,7 @@ namespace Rent_A_Car.Pages.Profile
             }
         }
 
-        
+
 
         public LoginPageVM ViewModel
         {

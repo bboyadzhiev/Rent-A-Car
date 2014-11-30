@@ -34,9 +34,10 @@ namespace Rent_A_Car.ViewModels
                 await ParseUser.LogInAsync(this.User.Username, this.User.Password);
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception up)
             {
-                return false;
+                throw up;
+                // return false;
             }
         }
     }
