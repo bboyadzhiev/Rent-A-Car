@@ -14,5 +14,7 @@ When the user parks the car at a desired place he/she is able to mark it as “p
 When the user rents a car it is marked as not available in the system and is not seen by other users willing to rent a car.
 
 Author:	Borislav Boyadzhiev
+
 E-mail: 	bboyadzhiev@gmail.com
+
 GitHub:	https://github.com/bboyadzhiev/Rent-A-Car.git
